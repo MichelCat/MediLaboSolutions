@@ -1,0 +1,12 @@
+
+~
+java:S1192a"\Define a constant instead of duplicating this literal "This patient does not exist" 3 times.(¾¹…µúÿÿÿÿ8¾û×ÚÎ1
+a
+java:S2583O"DChange this condition so that it does not always evaluate to "false"(ƒ©½8ŞàÙÚÎ1
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Şû×ÚÎ1
+_
+java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄŞ8Şû×ÚÎ1
+o	java:S100="NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Âñè³úÿÿÿÿ8áû×ÚÎ1
+X	java:S125L"<This block of commented-out lines of code should be removed.(åÑıÈ8¿ÅßÚÎ1
+Y	java:S125"<This block of commented-out lines of code should be removed.(ˆ˜¾°8åû×ÚÎ1
