@@ -56,7 +56,7 @@ public class PatientsController {
     }
 
     /**
-     * GET /patients/{patientId} : Get Patient Info by Patient ID
+     * GET /patients/{id} : Get Patient Info by Patient ID
      * Retrieve patient information with corresponding patient ID.
      *
      * @param id Patient ID founded (required)
@@ -65,13 +65,13 @@ public class PatientsController {
      *         or Not Found (status code 404)
      */
     @GetMapping(value = "/{id}")
-    public Optional<Patient> getPatient(@PathVariable int id) {
+    public Optional<Patient> getPatient(@PathVariable("id") Integer id) {
         log.debug("HTTP POST, Get Patient Info by Patient ID " + id);
         return patientBusiness.getPatient(id);
     }
 
     /**
-     * PATCH /patients/{patientId} : Update Patient Information
+     * PATCH /patients/{id} : Update Patient Information
      * Update information for an existing patient.
      *
      * @param id Patient ID added (required)
@@ -80,7 +80,7 @@ public class PatientsController {
      *         or Bad Request (status code 400)
      *         or Not Found (status code 404)
      */
-    @PatchMapping(value = "/{id}")
+    @PostMapping(value = "/{id}")
     public Patient updatePatient(@PathVariable("id") Integer id
                                  , @RequestBody Patient patient) {
         log.debug("HTTP PATCH, Update Patient Information " + id);
@@ -88,7 +88,7 @@ public class PatientsController {
     }
 
     /**
-     * DELETE /patients/{patientId} : Delete Patient Information
+     * DELETE /patients/{id} : Delete Patient Information
      * Delete information for an existing patient.
      *
      * @param id Patient ID deleted (required)

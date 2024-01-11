@@ -66,8 +66,8 @@ public class PatientBusiness {
         }
 
         // Patient exist
-        if (patientDao.existsByFirstNameAndLastNameAndBirthOfDate(
-                patient.getFirstName(), patient.getLastName(), patient.getBirthOfDate())) {
+        if (patientDao.existsByLastNameAndFirstNameAndBirthOfDate(
+                patient.getLastName(), patient.getFirstName(), patient.getBirthOfDate())) {
             throw new PatientBadRequestException("Patient already exists");
         }
 

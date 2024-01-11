@@ -1,0 +1,39 @@
+<!--
+/**
+ * main-layout
+ * @description Main layout
+ */
+-->
+
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!--
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+-->
+
+	<head th:insert="fragments/general :: headFiles">
+		<title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">[[#{label.company.name}]]</title>
+	</head>
+
+<body>
+
+	<div class="container-fluid">
+		<header>
+			<!-- Menu -->
+			<div th:replace="fragments/menu :: lineMenu"></div>
+		</header>
+	</div>
+    
+    <main class="container" id="mainContent">
+        <div layout:fragment="content"></div>
+    </main>
+
+	<footer th:replace="fragments/general :: footer"></footer>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!--
+/**
+ * list
+ * @description Patient List management page
+ */
+-->
+
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="fragments/main-layout">
+
+	<head>
+		<!-- Patient List -->
+		<title th:text="#{label.patient.titleList}" />
+	</head>
+
+<body>
+
+<main layout:fragment="content">
+
+	<div class="container">
+		<!-- Patient List -->
+		<header th:insert="fragments/general :: headerNormal('label.patient.titleList')"></header>
+
+		<!-- Global message -->
+		<div th:replace="fragments/global-message"></div>
+
+		<!-- Add new button -->
+		<div th:replace="fragments/input-type :: addNewButton('/patient/add')"></div>
+
+		<!-- Patient List -->
+		<div th:replace="fragments/general :: tableList('patient/list-detail')"></div>
+	</div>
+
+</main>
+
+</body>
+</html>

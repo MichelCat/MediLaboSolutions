@@ -1,0 +1,38 @@
+<!--
+/**
+ * list-detail
+ * @description Patient List
+ */
+-->
+
+<!-- Patient table -->
+
+<!-- Patient title -->
+<thead>
+    <tr>
+        <th th:text="#{label.patient.attribute.firstName}"></th>
+        <th th:text="#{label.patient.attribute.lastName}"></th>
+        <th th:text="#{label.patient.attribute.birthOfDate}"></th>
+        <th th:text="#{label.patient.attribute.gender}"></th>
+        <th th:text="#{label.patient.attribute.address}"></th>
+        <th th:text="#{label.patient.attribute.phoneNumber}"></th>
+        <th th:text="#{label.column.action}"></th>
+    </tr>
+</thead>
+<!-- Patient detail -->
+<tbody>
+    <tr th:each="patient : ${patients}">
+        <td th:text="${patient.firstName}"></td>
+        <td th:text="${patient.lastName}"></td>
+        <td th:text="${patient.birthOfDate}"></td>
+        <td th:text="${patient.gender}"></td>
+        <td th:text="${patient.address}"></td>
+        <td th:text="${patient.phoneNumber}"></td>
+        <td style="width: 15%" class="text-center">
+            <!-- Update and Delete button -->
+            <div th:replace="fragments/input-type :: updateDeleteButton(
+                                                        '/patient/update/{id}(id=${patient.id})'
+                                                        , '/patient/delete/{id}(id=${patient.id})')"></div>
+        </td>
+    </tr>
+</tbody>

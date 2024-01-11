@@ -1,0 +1,59 @@
+<!--
+/**
+ * add
+ * @description Add patient
+ */
+-->
+
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!--
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+-->
+
+	<!-- Add New Patient -->
+	<head th:include="fragments/general :: headNormal('label.patient.titleAdd')">
+	</head>
+
+<body>
+<div class="container">
+
+	<!-- Add New Patient -->
+	<header th:insert="fragments/general :: headerNormal('label.patient.titleAdd')"></header>
+
+	<!-- Global message -->
+	<div th:replace="fragments/global-message"></div>
+
+	<div class="row">
+		<form th:action="@{/patient/validate}" th:object="${patient}" th:method="POST" class="form-horizontal" style="width: 100%">
+
+			<!-- firstName -->
+			<div th:replace="fragments/input-type :: inputText('firstName', 'label.patient.attribute.firstName')"></div>
+			<!-- lastName -->
+			<div th:replace="fragments/input-type :: inputText('lastName', 'label.patient.attribute.lastName')"></div>
+			<!-- birthOfDate -->
+			<div th:replace="fragments/input-type :: inputText('birthOfDate', 'label.patient.attribute.birthOfDate')"></div>
+			<!-- gender -->
+			<div th:replace="fragments/input-type :: inputText('gender', 'label.patient.attribute.gender')"></div>
+			<!-- address -->
+			<div th:replace="fragments/input-type :: inputText('address', 'label.patient.attribute.address')"></div>
+			<!-- phoneNumber -->
+			<div th:replace="fragments/input-type :: inputText('phoneNumber', 'label.patient.attribute.phoneNumber')"></div>
+
+			<!-- Button Cancel and Add -->
+			<div th:replace="fragments/input-type :: cancelSubmitButton('/patient/list', 'label.patient.button.add')"></div>
+
+		</form>
+	</div>
+
+</div>
+
+<footer th:replace="fragments/general :: footer"></footer>
+
+</body>
+</html>

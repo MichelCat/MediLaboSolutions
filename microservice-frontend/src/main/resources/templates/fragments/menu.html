@@ -1,0 +1,20 @@
+<!--
+/**
+ * menu
+ * @description Menu
+ */
+-->
+
+<div class="row" th:fragment="lineMenu">
+	<!-- Right menu -->
+	<div class="col d-flex justify-content-end">
+		<div th:replace="fragments/general :: changeLanguage"></div>
+
+		<div>
+			[[#{label.loggedInUser}]] <span sec:authentication="name" />
+			<form th:action="@{/app/logout}" method="POST">
+				<input type="submit" value="Logout"/>
+			</form>
+		</div>
+	</div>
+</div>

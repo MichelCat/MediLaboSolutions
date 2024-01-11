@@ -1,0 +1,15 @@
+
+j
+java:S1192`"MDefine a constant instead of duplicating this literal "errorMessage" 4 times.(°¦ª•8œ«à®Ï1
+q
+java:S1192^"ODefine a constant instead of duplicating this literal "successMessage" 3 times.(æÓüÈÿÿÿÿÿ8œ«à®Ï1
+t
+java:S1192b"WDefine a constant instead of duplicating this literal "redirect:/patient/list" 4 times.(öþ‹ÿ8œ«à®Ï1
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8£«à®Ï1
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8£«à®Ï1
+_
+java:S1854*"=Remove this useless assignment to local variable "msgSource".(¤±à»ÿÿÿÿÿ8¥«à®Ï1
+P
+java:S1481*".Remove this unused "msgSource" local variable.(¤±à»ÿÿÿÿÿ8¦«à®Ï1

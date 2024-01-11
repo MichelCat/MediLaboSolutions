@@ -14,5 +14,5 @@ import java.time.LocalDate;
  */
 @Repository
 public interface PatientDao extends JpaRepository<PatientEntity, Integer> {
-    boolean existsByFirstNameAndLastNameAndBirthOfDate(String firstName, String lastName, LocalDate birthOfDate);
+    boolean existsByLastNameAndFirstNameAndBirthOfDate(String lastName, String firstName, LocalDate birthOfDate);
 }
