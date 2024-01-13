@@ -4,10 +4,7 @@ import com.medilabo.mfrontend.constant.PhoneNumberConstraint;
 import com.medilabo.mfrontend.enumerator.Gender;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,53 +29,55 @@ public class PatientBean {
     /**
      * Patient first name
      */
-    @NotBlank(message = "FirstName is mandatory")
-    @Size(max = 125, message = "Maximum length of {max} characters")
+    @NotBlank(message = "{constraint.patient.firstName.notBlank}")
+    @Size(max = 125, message = "{constraint.size.global}")
     String firstName;
 
     /**
      * Patient last name
      */
-    @NotBlank(message = "LastName is mandatory")
-    @Size(max = 125, message = "Maximum length of {max} characters")
+    @NotBlank(message = "{constraint.patient.lastName.notBlank}")
+    @Size(max = 125, message = "{constraint.size.global}")
     String lastName;
 
     /**
      * Patient birth of date
+     * ISO Date Format yyyy-MM-dd — for example, "2000-10-31"
      */
-    @NotNull(message = "Birth of date must not be null")
+    @NotNull(message = "{constraint.patient.birthOfDate.notNull}")
+    @PastOrPresent(message = "{constraint.patient.birthOfDate.pastOrPresent}")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate birthOfDate;
 
     /**
      * Patient gender (M=Male/F=Female)
      */
-    @NotNull(message = "Gender must not be null")
+    @NotNull(message = "{constraint.patient.gender.notNull}")
     @Enumerated(value = EnumType.STRING)
-//  @Size(max = 1, message = "Maximum length of {max} characters")
     Gender gender;
 
     /**
      * Patient address
      */
-    @Size(max = 125, message = "Maximum length of {max} characters")
+    @Size(max = 125, message = "{constraint.size.global}")
     String address;
 
     /**
      * Patient phone number
      */
     @Pattern(regexp = PhoneNumberConstraint.REGEXP, message = PhoneNumberConstraint.MESSAGE)
-    @Size(max = 12, message = "Maximum length of {max} characters")
+    @Size(max = 12, message = "{constraint.size.global}")
     String phoneNumber;
 
     /**
      * Create name
      */
-    @Size(max = 125, message = "Maximum length of {max} characters")
+    @Size(max = 125, message = "{constraint.size.global}")
     String createName;
 
     /**
      * Create date
+     * ISO Date Time Format yyyy-MM-dd'T'HH:mm:ss.SSSXXX — for example, "2000-10-31T01:30:00.000-05:00"
      */
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     OffsetDateTime createDate;
@@ -86,11 +85,12 @@ public class PatientBean {
     /**
      * Update name
      */
-    @Size(max = 125, message = "Maximum length of {max} characters")
+    @Size(max = 125, message = "{constraint.size.global}")
     String updateName;
 
     /**
      * Update date
+     * ISO Date Time Format yyyy-MM-dd'T'HH:mm:ss.SSSXXX — for example, "2000-10-31T01:30:00.000-05:00"
      */
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     OffsetDateTime updateDate;

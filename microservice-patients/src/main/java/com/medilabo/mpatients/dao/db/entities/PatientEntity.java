@@ -64,7 +64,6 @@ public class PatientEntity {
      */
     @NotNull(message = "Gender must not be null")
     @Enumerated(value = EnumType.STRING)
-//  @Size(max = 1, message = "Maximum length of {max} characters")
     Gender gender;
 
     /**

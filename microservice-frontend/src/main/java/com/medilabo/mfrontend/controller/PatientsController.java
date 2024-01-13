@@ -72,7 +72,7 @@ public class PatientsController {
      * @return View
      */
     @PostMapping("/validate")
-    public String validate(@Valid PatientBean patient
+    public String validate(@Valid @ModelAttribute("patient") PatientBean patient
             , BindingResult result
             , Model model
             , RedirectAttributes redirectAttributes) {
@@ -137,7 +137,7 @@ public class PatientsController {
      */
     @PostMapping("/update/{id}")
     public String updatePatient(@PathVariable("id") Integer id
-            , @Valid PatientBean patient
+            , @Valid @ModelAttribute("patient") PatientBean patient
             , BindingResult result
             , Model model
             , RedirectAttributes redirectAttributes) {

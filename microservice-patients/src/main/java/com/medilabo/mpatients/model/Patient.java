@@ -48,6 +48,7 @@ public class Patient {
 
   /**
    * Patient birth of date
+   * ISO Date Format yyyy-MM-dd — for example, "2000-10-31"
    */
   @NotNull(message = "Birth of date must not be null")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -58,7 +59,6 @@ public class Patient {
    */
   @NotNull(message = "Gender must not be null")
   @Enumerated(value = EnumType.STRING)
-//  @Size(max = 1, message = "Maximum length of {max} characters")
   Gender gender;
 
   /**
@@ -82,6 +82,7 @@ public class Patient {
 
   /**
    * Create date
+   * ISO Date Time Format yyyy-MM-dd'T'HH:mm:ss.SSSXXX — for example, "2000-10-31T01:30:00.000-05:00"
    */
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   OffsetDateTime createDate;
@@ -94,6 +95,7 @@ public class Patient {
 
   /**
    * Update date
+   * ISO Date Time Format yyyy-MM-dd'T'HH:mm:ss.SSSXXX — for example, "2000-10-31T01:30:00.000-05:00"
    */
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   OffsetDateTime updateDate;

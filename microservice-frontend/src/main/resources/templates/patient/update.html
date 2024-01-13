@@ -33,17 +33,17 @@
 		<form th:action="@{/patient/update/{id}(id=${patient.id})}" th:object="${patient}" th:method="POST" class="form-horizontal" style="width: 100%">
 
 			<!-- firstName -->
-			<div th:replace="fragments/input-type :: inputText('firstName', 'label.patient.attribute.firstName')"></div>
+			<div th:replace="fragments/input-type :: inputText('firstName', 'label.patient.attribute.firstName', 'T')"></div>
 			<!-- lastName -->
-			<div th:replace="fragments/input-type :: inputText('lastName', 'label.patient.attribute.lastName')"></div>
+			<div th:replace="fragments/input-type :: inputText('lastName', 'label.patient.attribute.lastName', 'T')"></div>
 			<!-- birthOfDate -->
-			<div th:replace="fragments/input-type :: inputText('birthOfDate', 'label.patient.attribute.birthOfDate')"></div>
+			<div th:replace="fragments/input-type :: inputDate('birthOfDate', 'label.patient.attribute.birthOfDate', 'T')"></div>
 			<!-- gender -->
-			<div th:replace="fragments/input-type :: inputText('gender', 'label.patient.attribute.gender')"></div>
+			<div th:replace="fragments/input-type :: genderRadioButton('gender', 'label.patient.attribute.gender', 'T')"></div>
 			<!-- address -->
-			<div th:replace="fragments/input-type :: inputText('address', 'label.patient.attribute.address')"></div>
+			<div th:replace="fragments/input-type :: inputText('address', 'label.patient.attribute.address', '')"></div>
 			<!-- phoneNumber -->
-			<div th:replace="fragments/input-type :: inputText('phoneNumber', 'label.patient.attribute.phoneNumber')"></div>
+			<div th:replace="fragments/input-type :: inputText('phoneNumber', 'label.patient.attribute.phoneNumber', '')"></div>
 
 			<!-- id -->
 			<input type="hidden" th:field="*{id}">
