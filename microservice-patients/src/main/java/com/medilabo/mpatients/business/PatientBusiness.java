@@ -58,7 +58,7 @@ public class PatientBusiness {
      * @throws PatientInternalServerErrorException,PatientBadRequestException Exception
      */
     @Transactional(rollbackFor = Exception.class)
-    public Patient AddPatient(final Patient patient)
+    public Patient addPatient(final Patient patient)
             throws PatientInternalServerErrorException, PatientBadRequestException {
         // Patient parameter is null
         if (patient == null) {

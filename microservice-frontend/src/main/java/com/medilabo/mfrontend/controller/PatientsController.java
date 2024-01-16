@@ -41,6 +41,7 @@ public class PatientsController {
     public String accueil(Model model){
         String msgSource = messageSource.getMessage("debug.patient.listForm"
                 , null, LocaleContextHolder.getLocale());
+        log.debug("HTTP GET, " + msgSource);
         model.addAttribute("patients", microservicePatientsProxy.getPatients());
         return "patient/list";
     }

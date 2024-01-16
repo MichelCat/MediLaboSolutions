@@ -2,7 +2,6 @@ package com.medilabo.mpatients.mapper;
 
 import com.medilabo.mpatients.dao.db.entities.PatientEntity;
 import com.medilabo.mpatients.model.Patient;
-import jakarta.validation.constraints.Null;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

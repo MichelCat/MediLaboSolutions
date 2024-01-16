@@ -7,6 +7,5 @@ _
 java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Şû×ÚÎ1
 _
 java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄŞ8Şû×ÚÎ1
-o	java:S100="NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Âñè³úÿÿÿÿ8áû×ÚÎ1
 X	java:S125L"<This block of commented-out lines of code should be removed.(åÑıÈ8¿ÅßÚÎ1
 Y	java:S125"<This block of commented-out lines of code should be removed.(ˆ˜¾°8åû×ÚÎ1

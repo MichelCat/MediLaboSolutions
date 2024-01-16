@@ -51,7 +51,7 @@ public class PatientsController {
     @PostMapping(value = "")
     public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
         log.debug("HTTP GET, Create New Patient");
-        Patient newPatient = patientBusiness.AddPatient(patient);
+        Patient newPatient = patientBusiness.addPatient(patient);
         return new ResponseEntity<Patient>(newPatient, HttpStatus.CREATED);
     }
 

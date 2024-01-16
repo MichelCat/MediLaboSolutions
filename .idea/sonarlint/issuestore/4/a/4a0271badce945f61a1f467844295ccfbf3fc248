@@ -1,15 +1,13 @@
 
+m
+java:S1192,"KDefine a constant instead of duplicating this literal "HTTP GET, " 3 times.(²µÎİÿÿÿÿÿ8ì¨¡˜Ğ1
 j
-java:S1192`"MDefine a constant instead of duplicating this literal "errorMessage" 4 times.(°¦ª•8¨§µØÏ1
+java:S1192a"MDefine a constant instead of duplicating this literal "errorMessage" 4 times.(°¦ª•8¨§µØÏ1
 q
-java:S1192^"ODefine a constant instead of duplicating this literal "successMessage" 3 times.(æÓüÈÿÿÿÿÿ8¨§µØÏ1
+java:S1192_"ODefine a constant instead of duplicating this literal "successMessage" 3 times.(æÓüÈÿÿÿÿÿ8¨§µØÏ1
 t
-java:S1192b"WDefine a constant instead of duplicating this literal "redirect:/patient/list" 4 times.(öş‹ÿ8©§µØÏ1
+java:S1192c"WDefine a constant instead of duplicating this literal "redirect:/patient/list" 4 times.(öş‹ÿ8­‚ÃÑ1
 _
 java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8³§µØÏ1
 _
 java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8³§µØÏ1
-_
-java:S1854*"=Remove this useless assignment to local variable "msgSource".(¤±à»ÿÿÿÿÿ8¶§µØÏ1
-P
-java:S1481*".Remove this unused "msgSource" local variable.(¤±à»ÿÿÿÿÿ8·§µØÏ1
