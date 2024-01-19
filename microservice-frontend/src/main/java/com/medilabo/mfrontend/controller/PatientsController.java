@@ -37,7 +37,7 @@ public class PatientsController {
      * @param model Model object
      * @return View
      */
-    @GetMapping(value = {"", "/", "/patient/list"})
+    @GetMapping(value = {"/", "/patient/list"})
     public String accueil(Model model){
         String msgSource = messageSource.getMessage("debug.patient.listForm"
                 , null, LocaleContextHolder.getLocale());
