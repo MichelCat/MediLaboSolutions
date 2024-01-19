@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Slf4j
 @Controller
-@RequestMapping("patient")
+//@RequestMapping("patient")
 public class PatientsController {
 
     @Autowired
@@ -37,7 +37,7 @@ public class PatientsController {
      * @param model Model object
      * @return View
      */
-    @GetMapping("/list")
+    @GetMapping(value = {"", "/", "/patient/list"})
     public String accueil(Model model){
         String msgSource = messageSource.getMessage("debug.patient.listForm"
                 , null, LocaleContextHolder.getLocale());
@@ -52,7 +52,7 @@ public class PatientsController {
      * @param model Model object
      * @return View
      */
-    @GetMapping("/add")
+    @GetMapping("/patient/add")
     public String addPatientForm(Model model) {
         String msgSource = messageSource.getMessage("debug.patient.addForm"
                 , null, LocaleContextHolder.getLocale());
@@ -72,7 +72,7 @@ public class PatientsController {
      *
      * @return View
      */
-    @PostMapping("/validate")
+    @PostMapping("/patient/validate")
     public String validate(@Valid @ModelAttribute("patient") PatientBean patient
             , BindingResult result
             , Model model
@@ -107,7 +107,7 @@ public class PatientsController {
      * @param redirectAttributes RedirectAttributes object
      * @return View
      */
-    @GetMapping("/update/{id}")
+    @GetMapping("/patient/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id
             , Model model
             , RedirectAttributes redirectAttributes) {
@@ -136,7 +136,7 @@ public class PatientsController {
      *
      * @return View
      */
-    @PostMapping("/update/{id}")
+    @PostMapping("/patient/update/{id}")
     public String updatePatient(@PathVariable("id") Integer id
             , @Valid @ModelAttribute("patient") PatientBean patient
             , BindingResult result
@@ -173,7 +173,7 @@ public class PatientsController {
      *
      * @return View
      */
-    @RequestMapping("/delete/{id}")
+    @RequestMapping("/patient/delete/{id}")
     public String deletePatient(@PathVariable("id") Integer id
             , Model model
             , RedirectAttributes redirectAttributes) {

@@ -117,3 +117,9 @@ F
 gateway-server/pom.xml,c\1\c1378869ff2e9e7ab602092a82de08a23a6c93f3
 Ö
 Ugateway-server/src/main/java/com/medilabo/gatewayserver/GatewayServerApplication.java,a\2\a21118802f5326b1f4098a38cab624021eabdd4d
+Ç
+Reureka-server/src/main/java/com/medilabo/eurekaserver/EurekaserverApplication.java,1\f\1ff5494817f2da05bde4322116fc37fdf08416e0
+â
+Ymicroservice-frontend/src/main/java/com/medilabo/mfrontend/configuration/FeignConfig.java,3\7\37627e7b7631f529ee295f951d2db57d52e668b1
+ê
+`gateway-server/src/main/java/com/medilabo/gatewayserver/configuration/SecurityConfiguration.java,3\a\3aac3061ec4851b340a54d8279ce5ba1b22fced1
