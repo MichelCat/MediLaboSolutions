@@ -80,7 +80,7 @@ public class NoteController {
      *         or Bad Request (status code 400)
      *         or Not Found (status code 404)
      */
-    @PatchMapping(value = "/{id}")
+    @PostMapping(value = "/{id}")
     public Note updateNote(@PathVariable("id") String id
             , @RequestBody Note note) {
         log.debug("HTTP PATCH, Update note " + id);

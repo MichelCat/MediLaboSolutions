@@ -36,10 +36,10 @@ public class NoteBusiness {
     public List<Note> getNotesByPatientId(int id)
             throws NoteNoContentException {
         List<Note> notes = noteDao.findAllByPatientId(id);
-        // Empty list
-        if(notes.isEmpty()) {
-            throw new NoteNoContentException("No notes found");
-        }
+//        // Empty list
+//        if(notes.isEmpty()) {
+//            throw new NoteNoContentException("No notes found");
+//        }
         // Notes found
         return notes;
     }

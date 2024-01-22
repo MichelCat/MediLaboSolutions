@@ -25,6 +25,9 @@ public class GatewayServerApplication {
 //						.uri("http://localhost:9001/"))
 				.route("microservice-frontend", r -> r.path("/patient/**")
 						.uri("lb://microservice-frontend"))
+				.route("microservice-frontend", r -> r.path("/note/**")
+						.uri("lb://microservice-frontend"))
+
 				.route("microservice-patients", r -> r.path("/patients/**")
 						.uri("lb://microservice-patients"))
 				.route("microservice-notes", r -> r.path("/notes/**")

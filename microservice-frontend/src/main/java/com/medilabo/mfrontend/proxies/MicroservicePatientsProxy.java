@@ -13,7 +13,7 @@ import java.util.List;
  * @version 1.0
  */
 //@FeignClient(name = "microservice-patients", url = "localhost:9001")
-@FeignClient(name = "gateway-server", url = "localhost:9004")
+@FeignClient(name = "gateway-server", url = "localhost:9004", contextId = "microservice-patients")
 //@FeignClient(name = "gateway-server")
 public interface MicroservicePatientsProxy {
     /**

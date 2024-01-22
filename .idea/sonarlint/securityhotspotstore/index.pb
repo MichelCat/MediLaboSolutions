@@ -133,3 +133,9 @@ imicroservice-notes/src/main/java/com/medilabo/mnotes/web/exceptions/NoteInterna
 Wmicroservice-notes/src/main/java/com/medilabo/mnotes/web/controller/NoteController.java,8\0\801ee4b2595f41e88954715f24188e4a22ac8f57
 ê
 `microservice-patients/src/main/java/com/medilabo/mpatients/web/controller/PatientController.java,5\d\5dcad4c43e14982b5b6304f682c7664daea5605c
+~
+Nmicroservice-frontend/src/main/java/com/medilabo/mfrontend/beans/NoteBean.java,3\a\3a9c79d45c169efce597c797166b62ae5c81b235
+é
+^microservice-frontend/src/main/java/com/medilabo/mfrontend/proxies/MicroserviceNotesProxy.java,0\1\01496950daae3798d1d6cdb61f59bd9a4fdbab9b
+â
+Ymicroservice-frontend/src/main/java/com/medilabo/mfrontend/controller/NoteController.java,e\8\e8f0f263ca2cc71c9cf379a4200b3eead1c3e782

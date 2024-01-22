@@ -42,6 +42,22 @@
 
 <!--
 /**
+ * Textarea input.
+ * @param {string} fieldName - Field name
+ * @param {string} fieldLabel - Field label
+ */
+-->
+<div class="form-group" th:fragment="inputTextarea (fieldName, fieldLabel)">
+    <label th:for="${fieldName}" class="col-sm-2 form-label" th:text="#{${fieldLabel}}"></label>
+    <div class="col-sm-10">
+                <textarea class="form-control" rows="5" th:placeholder="#{${fieldLabel}}"
+                          th:id="${fieldName}" th:field="*{__${fieldName}__}" />
+        <p class="text-danger" th:if="${#fields.hasErrors(fieldName)}" th:errors="*{__${fieldName}__}"></p>
+    </div>
+</div>
+
+<!--
+/**
  * User role radio button. (M=Male/F=Female)
  * @param {string} fieldName - Field name
  * @param {string} fieldLabel - Field label
@@ -69,7 +85,7 @@
 -->
 <div class="form-group" th:fragment="cancelSubmitButton (cancelLink, submitLabel)">
     <div class="col-sm-12">
-        <a class="btn btn-danger btn-sm" th:href="@{${cancelLink}}" th:text="#{label.button.cancel}"></a>
+        <a class="btn btn-danger btn-sm" th:href="@{__${cancelLink}__}" th:text="#{label.button.cancel}"></a>
         <input class="btn btn-primary btn-sm" type="submit" th:value="#{${submitLabel}}">
     </div>
 </div>
@@ -82,7 +98,7 @@
 -->
 <div class="row" th:fragment="addNewButton (addNewLink)">
     <div class="col-2">
-        <a th:href="@{${addNewLink}}" class="btn btn-primary btn-sm" th:text="#{label.button.addNew}"></a>
+        <a th:href="@{__${addNewLink}__}" class="btn btn-primary btn-sm" th:text="#{label.button.addNew}"></a>
     </div>
 </div>
 

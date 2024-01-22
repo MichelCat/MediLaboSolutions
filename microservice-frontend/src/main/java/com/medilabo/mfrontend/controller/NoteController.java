@@ -1,7 +1,7 @@
 package com.medilabo.mfrontend.controller;
 
-import com.medilabo.mfrontend.beans.PatientBean;
-import com.medilabo.mfrontend.proxies.MicroservicePatientsProxy;
+import com.medilabo.mfrontend.beans.NoteBean;
+import com.medilabo.mfrontend.proxies.MicroserviceNotesProxy;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,178 +14,180 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * PatientsController is the Endpoint will perform the following actions via Get/Post/Put/Delete with HTTP on patients.
+ * NoteController is the Endpoint will perform the following actions via Get/Post/Put/Delete with HTTP on notes.
  *
  * @author MC
  * @version 1.0
  */
 @Slf4j
 @Controller
-//@RequestMapping("patient")
-public class PatientsController {
+@RequestMapping("note")
+public class NoteController {
 
     @Autowired
-    private MicroservicePatientsProxy microservicePatientsProxy;
+    private MicroserviceNotesProxy microserviceNotesProxy;
     @Autowired
     private MessageSource messageSource;
 
     /**
-     * Read - Get the list of patients.
+     * Read - Get notes for patient id
+     *
+     * @param id Note ID added
+     * @param model Model object
+     * @return View
+     */
+    @GetMapping("/list/{id}")
+    public String home(@PathVariable("id") Integer id
+                          , Model model){
+        String msgSource = messageSource.getMessage("debug.note.listForm"
+                , null, LocaleContextHolder.getLocale());
+        log.debug("HTTP GET, " + msgSource);
+        model.addAttribute("notes", microserviceNotesProxy.getNotesByPatientId(id));
+        return "note/list";
+    }
+
+    /**
+     * Read - Page add new note.
      *
      * @param model Model object
      * @return View
      */
-    @GetMapping(value = {"/", "/patient/list"})
-    public String accueil(Model model){
-        String msgSource = messageSource.getMessage("debug.patient.listForm"
+    @GetMapping("/add")
+    public String addNoteForm(Model model) {
+        String msgSource = messageSource.getMessage("debug.note.addForm"
                 , null, LocaleContextHolder.getLocale());
         log.debug("HTTP GET, " + msgSource);
-        model.addAttribute("patients", microservicePatientsProxy.getPatients());
-        return "patient/list";
+        NoteBean note = new NoteBean();
+        model.addAttribute("note", note);
+        return "note/add";
     }
 
     /**
-     * Read - Page add new patient.
+     * Create - Add new Note
      *
-     * @param model Model object
-     * @return View
-     */
-    @GetMapping("/patient/add")
-    public String addPatientForm(Model model) {
-        String msgSource = messageSource.getMessage("debug.patient.addForm"
-                , null, LocaleContextHolder.getLocale());
-        log.debug("HTTP GET, " + msgSource);
-        PatientBean patient = new PatientBean();
-        model.addAttribute("patient", patient);
-        return "patient/add";
-    }
-
-    /**
-     * Create - Add new patient
-     *
-     * @param patient The patient object added
+     * @param note The note object added
      * @param result Result of a validation
      * @param model Model object
      * @param redirectAttributes RedirectAttributes object
      *
      * @return View
      */
-    @PostMapping("/patient/validate")
-    public String validate(@Valid @ModelAttribute("patient") PatientBean patient
+    @PostMapping("/validate")
+    public String validate(@Valid @ModelAttribute("note") NoteBean note
             , BindingResult result
             , Model model
             , RedirectAttributes redirectAttributes) {
 
-        // Patient parameter is not valid
+        // Note parameter is not valid
         if (result.hasErrors()) {
-            String msgSource = messageSource.getMessage("debug.patient.validation"
-                    , new Object[] { patient }
+            String msgSource = messageSource.getMessage("debug.note.validation"
+                    , new Object[] { note }
                     , LocaleContextHolder.getLocale());
             log.debug("HTTP POST, " + msgSource);
-            return "patient/add";
+            return "note/add";
         }
         try {
-            // Save patient
-            microservicePatientsProxy.addPatient(patient);
-            String msgSource = messageSource.getMessage("info.patient.created"
+            // Save note
+            microserviceNotesProxy.addNote(note);
+            String msgSource = messageSource.getMessage("info.note.created"
                     , null, LocaleContextHolder.getLocale());
             log.info("HTTP POST, " + msgSource);
             redirectAttributes.addFlashAttribute("successMessage", msgSource);
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/patient/list";
+        return "redirect:/note/list";
     }
 
     /**
-     * Read - Page add new patient.
+     * Read - Page add new note.
      *
-     * @param id Patient ID added
+     * @param id Note ID added
      * @param model Model object
      * @param redirectAttributes RedirectAttributes object
      * @return View
      */
-    @GetMapping("/patient/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id
+    @GetMapping("/update/{id}")
+    public String showUpdateForm(@PathVariable("id") String id
             , Model model
             , RedirectAttributes redirectAttributes) {
 
         try {
-            PatientBean patient = microservicePatientsProxy.getPatient(id);
-            String msgSource = messageSource.getMessage("debug.patient.updateForm"
+            NoteBean note = microserviceNotesProxy.getNote(id);
+            String msgSource = messageSource.getMessage("debug.note.updateForm"
                     , null, LocaleContextHolder.getLocale());
             log.debug("HTTP GET, " + msgSource);
-            model.addAttribute("patient", patient);
+            model.addAttribute("note", note);
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
-            return "redirect:/patient/list";
+            return "redirect:/note/list";
         }
-        return "patient/update";
+        return "note/update";
     }
 
     /**
-     * Update - Update an existing patient
+     * Update - Update an existing note
      *
-     * @param id Patient ID added
-     * @param patient The patient object updated
+     * @param id Note ID added
+     * @param note The note object updated
      * @param result Result of a validation
      * @param model Model object
      * @param redirectAttributes RedirectAttributes object
      *
      * @return View
      */
-    @PostMapping("/patient/update/{id}")
-    public String updatePatient(@PathVariable("id") Integer id
-            , @Valid @ModelAttribute("patient") PatientBean patient
+    @PostMapping("/update/{id}")
+    public String updateNote(@PathVariable("id") String id
+            , @Valid @ModelAttribute("note") NoteBean note
             , BindingResult result
             , Model model
             , RedirectAttributes redirectAttributes) {
 
-        // Patient parameter is not valid
+        // Note parameter is not valid
         if (result.hasErrors()) {
-            String msgSource = messageSource.getMessage("debug.patient.validation"
-                    , new Object[] { patient }
+            String msgSource = messageSource.getMessage("debug.note.validation"
+                    , new Object[] { note }
                     , LocaleContextHolder.getLocale());
             log.debug("HTTP PATCH, " + msgSource);
-            return "patient/update";
+            return "note/update";
         }
         try {
-            // Modify patient
-            microservicePatientsProxy.updatePatient(id, patient);
-            String msgSource = messageSource.getMessage("info.patient.updated"
+            // Modify note
+            microserviceNotesProxy.updateNote(id, note);
+            String msgSource = messageSource.getMessage("info.note.updated"
                     , null, LocaleContextHolder.getLocale());
             log.info("HTTP PATCH, " + msgSource);
             redirectAttributes.addFlashAttribute("successMessage", msgSource);
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/patient/list";
+        return "redirect:/note/list/" + note.getPatientId();
     }
 
     /**
-     * Delete - Delete an patient
+     * Delete - Delete an note
      *
-     * @param id Patient ID deleted
+     * @param id Note ID deleted
      * @param model Model object
      * @param redirectAttributes RedirectAttributes object
      *
      * @return View
      */
-    @RequestMapping("/patient/delete/{id}")
-    public String deletePatient(@PathVariable("id") Integer id
+    @RequestMapping("/delete/{id}")
+    public String deleteNote(@PathVariable("id") String id
             , Model model
             , RedirectAttributes redirectAttributes) {
 
         try {
-            // Delete patient
-            microservicePatientsProxy.deletePatient(id);
-            String msgSource = messageSource.getMessage("info.patient.deleted"
+            // Delete note
+            microserviceNotesProxy.deleteNote(id);
+            String msgSource = messageSource.getMessage("info.note.deleted"
                     , null, LocaleContextHolder.getLocale());
             log.info("HTTP DELETE, " + msgSource);
             redirectAttributes.addFlashAttribute("successMessage", msgSource);
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/patient/list";
+        return "redirect:/note/list";
     }
 }

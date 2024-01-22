@@ -21,6 +21,13 @@
 <main layout:fragment="content">
 
 	<div class="container">
+		<!-- Navigational hierarchy -->
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item active" aria-current="page" th:text="#{label.menu.user.home}"></li>
+			</ol>
+		</nav>
+
 		<!-- Patient List -->
 		<header th:insert="fragments/general :: headerNormal('label.patient.titleList')"></header>
 
