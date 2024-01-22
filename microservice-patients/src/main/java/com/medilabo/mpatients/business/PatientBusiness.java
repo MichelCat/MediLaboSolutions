@@ -73,7 +73,6 @@ public class PatientBusiness {
 
         // Patient saved
         PatientEntity patientEntity = patientMapper.daoToEntity(patient);
-//        patientEntity.setCreateName("");
         patientEntity.setCreateDate(Timestamp.from(OffsetDateTime.now().toInstant()));
         PatientEntity newPatientEntity = patientDao.save(patientEntity);
         if(newPatientEntity == null) {
@@ -139,7 +138,6 @@ public class PatientBusiness {
         if(patient.getPhoneNumber() != null) {
             currentPatientEntity.setPhoneNumber(patient.getPhoneNumber());
         }
-//        currentPatientEntity.setUpdateName("");
         currentPatientEntity.setUpdateDate(Timestamp.from(OffsetDateTime.now().toInstant()));
         PatientEntity newPatientEntity = patientDao.save(currentPatientEntity);
         return patientMapper.entityToDao(newPatientEntity);

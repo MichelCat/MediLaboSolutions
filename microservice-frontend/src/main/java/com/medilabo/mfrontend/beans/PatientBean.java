@@ -70,23 +70,11 @@ public class PatientBean {
     String phoneNumber;
 
     /**
-     * Create name
-     */
-    @Size(max = 125, message = "{constraint.size.global}")
-    String createName;
-
-    /**
      * Create date
      * ISO Date Time Format yyyy-MM-dd'T'HH:mm:ss.SSSXXX — for example, "2000-10-31T01:30:00.000-05:00"
      */
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     OffsetDateTime createDate;
-
-    /**
-     * Update name
-     */
-    @Size(max = 125, message = "{constraint.size.global}")
-    String updateName;
 
     /**
      * Update date

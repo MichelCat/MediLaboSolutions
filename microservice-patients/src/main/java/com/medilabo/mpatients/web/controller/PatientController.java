@@ -20,7 +20,7 @@ import java.util.Optional;
 @Slf4j
 @RestController
 @RequestMapping("patients")
-public class PatientsController {
+public class PatientController {
 
     @Autowired
     private PatientBusiness patientBusiness;

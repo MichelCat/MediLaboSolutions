@@ -80,21 +80,9 @@ public class PatientEntity {
     String phoneNumber;
 
     /**
-     * Create name
-     */
-    @Size(max = 125, message = "Maximum length of {max} characters")
-    String createName;
-
-    /**
      * Create date
      */
     Timestamp createDate;
-
-    /**
-     * Update name
-     */
-    @Size(max = 125, message = "Maximum length of {max} characters")
-    String updateName;
 
     /**
      * Update date

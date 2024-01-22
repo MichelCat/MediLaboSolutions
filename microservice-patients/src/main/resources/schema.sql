@@ -1,13 +1,13 @@
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
--- Setting up MediLaboSolutionsDev DB
+-- Setting up medilabo_patient DB
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
-drop database if exists MediLaboSolutionsDev;
+drop database if exists medilabo_patient;
 
-create database MediLaboSolutionsDev;
-use MediLaboSolutionsDev;
+create database medilabo_patient;
+use medilabo_patient;
 
 -- CREATE TABLE patient (
 --     id int NOT NULL AUTO_INCREMENT,             -- Patient ID
@@ -17,9 +17,7 @@ use MediLaboSolutionsDev;
 --     gender VARCHAR(1),                          -- Patient gender (M=Male/F=Female)
 --     address VARCHAR(125),                       -- Patient address
 --     phone_number VARCHAR(12),                   -- Patient phone number
---     create_name VARCHAR(125),                   -- Create name
 --     create_date TIMESTAMP,                      -- Create date
---     update_name VARCHAR(125),                   -- Update name
 --     update_date TIMESTAMP,                      -- Update date
 --
 --     constraint pk_patient PRIMARY KEY (id),

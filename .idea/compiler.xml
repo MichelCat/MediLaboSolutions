@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eurekaserver" />
+        <module name="microservice-notes" />
         <module name="microservice-frontend" />
         <module name="gateway-server" />
         <module name="eureka-server" />
@@ -32,6 +33,7 @@
       <module name="eurekaserver" options="-parameters" />
       <module name="gateway-server" options="-parameters" />
       <module name="microservice-frontend" options="-parameters" />
+      <module name="microservice-notes" options="-parameters" />
       <module name="microservice-patients" options="-parameters" />
     </option>
   </component>
