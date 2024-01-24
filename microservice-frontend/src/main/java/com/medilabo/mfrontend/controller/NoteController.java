@@ -1,7 +1,11 @@
 package com.medilabo.mfrontend.controller;
 
+import com.medilabo.mfrontend.beans.DiabetesRiskBean;
 import com.medilabo.mfrontend.beans.NoteBean;
+import com.medilabo.mfrontend.beans.PatientBean;
+import com.medilabo.mfrontend.proxies.MicroserviceDiabetesRisksProxy;
 import com.medilabo.mfrontend.proxies.MicroserviceNotesProxy;
+import com.medilabo.mfrontend.proxies.MicroservicePatientsProxy;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 /**
  * NoteController is the Endpoint will perform the following actions via Get/Post/Put/Delete with HTTP on notes.
@@ -26,6 +32,10 @@ public class NoteController {
 
     @Autowired
     private MicroserviceNotesProxy microserviceNotesProxy;
+    @Autowired
+    private MicroservicePatientsProxy microservicePatientsProxy;
+    @Autowired
+    private MicroserviceDiabetesRisksProxy microserviceDiabetesRisksProxy;
     @Autowired
     private MessageSource messageSource;
 
@@ -42,22 +52,37 @@ public class NoteController {
         String msgSource = messageSource.getMessage("debug.note.listForm"
                 , null, LocaleContextHolder.getLocale());
         log.debug("HTTP GET, " + msgSource);
-        model.addAttribute("notes", microserviceNotesProxy.getNotesByPatientId(id));
+        PatientBean patientBean = microservicePatientsProxy.getPatient(id);
+        if (patientBean == null) {
+            return "redirect:/patient/list";
+        }
+        List<NoteBean> notes = microserviceNotesProxy.getNotesByPatientId(id);
+        if (notes == null) {
+            return "redirect:/patient/list";
+        }
+        DiabetesRiskBean diabetesRisk = microserviceDiabetesRisksProxy.getDiabetesRiskByPatientId(id);
+
+        model.addAttribute("patient", patientBean);
+        model.addAttribute("notes", notes);
+        model.addAttribute("diabetesRisk", diabetesRisk);
         return "note/list";
     }
 
     /**
      * Read - Page add new note.
      *
+     * @param id Patient ID added
      * @param model Model object
      * @return View
      */
-    @GetMapping("/add")
-    public String addNoteForm(Model model) {
+    @GetMapping("/add/{id}")
+    public String addNoteForm(@PathVariable("id") Integer id
+                              , Model model) {
         String msgSource = messageSource.getMessage("debug.note.addForm"
                 , null, LocaleContextHolder.getLocale());
         log.debug("HTTP GET, " + msgSource);
         NoteBean note = new NoteBean();
+        note.setPatientId(id);
         model.addAttribute("note", note);
         return "note/add";
     }
@@ -96,7 +121,7 @@ public class NoteController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/note/list";
+        return "redirect:/note/list/" + note.getPatientId();
     }
 
     /**
@@ -111,16 +136,18 @@ public class NoteController {
     public String showUpdateForm(@PathVariable("id") String id
             , Model model
             , RedirectAttributes redirectAttributes) {
+        Integer patientId = 0;
 
         try {
             NoteBean note = microserviceNotesProxy.getNote(id);
+            patientId = note.getPatientId();
             String msgSource = messageSource.getMessage("debug.note.updateForm"
                     , null, LocaleContextHolder.getLocale());
             log.debug("HTTP GET, " + msgSource);
             model.addAttribute("note", note);
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
-            return "redirect:/note/list";
+            return "redirect:/note/list/" + patientId;
         }
         return "note/update";
     }
@@ -177,8 +204,12 @@ public class NoteController {
     public String deleteNote(@PathVariable("id") String id
             , Model model
             , RedirectAttributes redirectAttributes) {
+        Integer patientId = 0;
 
         try {
+            NoteBean note = microserviceNotesProxy.getNote(id);
+            patientId = note.getPatientId();
+
             // Delete note
             microserviceNotesProxy.deleteNote(id);
             String msgSource = messageSource.getMessage("info.note.deleted"
@@ -188,6 +219,6 @@ public class NoteController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/note/list";
+        return "redirect:/note/list/" + patientId;
     }
 }

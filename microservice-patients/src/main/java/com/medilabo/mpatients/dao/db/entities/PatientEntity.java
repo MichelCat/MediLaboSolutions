@@ -23,11 +23,11 @@ import java.time.LocalDate;
 @Table(name = "patient"
         , uniqueConstraints = { @UniqueConstraint(name = "uc_patient_firstname_lastname_birthofdate"
         , columnNames = { "last_name", "first_name", "birth_of_date" }) })
-@FieldDefaults(level= AccessLevel.PRIVATE)
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level= AccessLevel.PRIVATE)
 @Builder
 @ToString
 public class PatientEntity {

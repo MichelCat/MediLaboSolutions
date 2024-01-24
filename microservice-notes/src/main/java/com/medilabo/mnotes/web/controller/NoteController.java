@@ -1,6 +1,6 @@
 package com.medilabo.mnotes.web.controller;
 
-import com.medilabo.mnotes.dao.business.NoteBusiness;
+import com.medilabo.mnotes.business.NoteBusiness;
 import com.medilabo.mnotes.dao.db.Note;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

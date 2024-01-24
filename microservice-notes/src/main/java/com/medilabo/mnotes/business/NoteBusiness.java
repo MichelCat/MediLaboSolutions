@@ -1,4 +1,4 @@
-package com.medilabo.mnotes.dao.business;
+package com.medilabo.mnotes.business;
 
 import com.medilabo.mnotes.dao.NoteDao;
 import com.medilabo.mnotes.dao.db.Note;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * NoteBusiness is the notes page processing service
+ * NoteBusiness is the note processing service
  *
  * @author MC
  * @version 1.0

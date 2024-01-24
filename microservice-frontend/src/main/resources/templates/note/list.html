@@ -36,7 +36,10 @@
         <div th:replace="fragments/global-message"></div>
 
         <!-- Add new button -->
-        <div th:replace="fragments/input-type :: addNewButton('/note/add')"></div>
+        <div th:replace="fragments/input-type :: addNewButton('/note/add/{id}(id=${patient.id})')"></div>
+
+        <!-- Header List -->
+        <div th:replace="note/list-header"></div>
 
         <!-- Note List -->
         <div th:replace="fragments/general :: tableList('note/list-detail')"></div>

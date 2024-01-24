@@ -12,6 +12,7 @@
         <module name="microservice-frontend" />
         <module name="gateway-server" />
         <module name="eureka-server" />
+        <module name="microservice-diabetes-risks" />
       </profile>
       <profile name="Annotation profile for microservice-patients" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -32,6 +33,7 @@
       <module name="eureka-server" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />
       <module name="gateway-server" options="-parameters" />
+      <module name="microservice-diabetes-risks" options="-parameters" />
       <module name="microservice-frontend" options="-parameters" />
       <module name="microservice-notes" options="-parameters" />
       <module name="microservice-patients" options="-parameters" />

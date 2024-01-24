@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * PatientBusiness is the patients page processing service
+ * PatientBusiness is the patient processing service
  *
  * @author MC
  * @version 1.0
