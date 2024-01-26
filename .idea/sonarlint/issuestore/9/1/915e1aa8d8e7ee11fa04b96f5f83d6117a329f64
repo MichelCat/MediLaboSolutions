@@ -1,0 +1,11 @@
+
+h
+java:S1301J"KReplace this "switch" statement by "if" statements to increase readability.(øÓ°í8«œ¦äÓ1
+_
+java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄŞ8»œ¦äÓ1
+_
+java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8¼œ¦äÓ1
+_
+java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄŞ8¼œ¦äÓ1
+t
+java:S3776E"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Çãïòıÿÿÿÿ8¿œ¦äÓ1
