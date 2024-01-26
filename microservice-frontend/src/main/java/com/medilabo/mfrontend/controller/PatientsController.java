@@ -1,6 +1,7 @@
 package com.medilabo.mfrontend.controller;
 
 import com.medilabo.mfrontend.beans.PatientBean;
+import com.medilabo.mfrontend.proxies.MicroserviceNotesProxy;
 import com.medilabo.mfrontend.proxies.MicroservicePatientsProxy;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,8 @@ public class PatientsController {
 
     @Autowired
     private MicroservicePatientsProxy microservicePatientsProxy;
+    @Autowired
+    private MicroserviceNotesProxy microserviceNotesProxy;
     @Autowired
     private MessageSource messageSource;
 
@@ -67,7 +70,6 @@ public class PatientsController {
      * @param result Result of a validation
      * @param model Model object
      * @param redirectAttributes RedirectAttributes object
-     *
      * @return View
      */
     @PostMapping("/patient/validate")
@@ -131,7 +133,6 @@ public class PatientsController {
      * @param result Result of a validation
      * @param model Model object
      * @param redirectAttributes RedirectAttributes object
-     *
      * @return View
      */
     @PostMapping("/patient/update/{id}")
@@ -168,7 +169,6 @@ public class PatientsController {
      * @param id Patient ID deleted
      * @param model Model object
      * @param redirectAttributes RedirectAttributes object
-     *
      * @return View
      */
     @RequestMapping("/patient/delete/{id}")
@@ -177,6 +177,8 @@ public class PatientsController {
             , RedirectAttributes redirectAttributes) {
 
         try {
+            // Delete notes
+            microserviceNotesProxy.deleteNotesByPatientId(id);
             // Delete patient
             microservicePatientsProxy.deletePatient(id);
             String msgSource = messageSource.getMessage("info.patient.deleted"

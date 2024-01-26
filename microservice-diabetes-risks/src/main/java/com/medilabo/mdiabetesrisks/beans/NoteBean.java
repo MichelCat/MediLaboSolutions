@@ -31,7 +31,7 @@ public class NoteBean {
     /**
      * Observation note
      */
-    String note;
+    String observationNote;
 
     /**
      * Create date

@@ -5,8 +5,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.Optional;
-
 /**
  * MicroservicePatientsProxy is the Proxy will perform the following actions via Get/Post/Patch/Delete with HTTP on patients.
  *
@@ -24,6 +22,5 @@ public interface MicroservicePatientsProxy {
      */
     @GetMapping(value = "/patients/{id}")
 //    @GetMapping(value = "/microservice-patients/patients/{id}")
-//    Optional<PatientBean> getPatient(@PathVariable("id") Integer id);
     PatientBean getPatient(@PathVariable("id") Integer id);
 }

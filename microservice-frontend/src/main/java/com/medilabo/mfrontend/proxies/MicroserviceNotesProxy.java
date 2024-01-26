@@ -20,7 +20,7 @@ public interface MicroserviceNotesProxy {
      * Retrieve notes
      */
     @GetMapping(value = "/notes/patients/{id}")
-    public List<NoteBean> getNotesByPatientId(@PathVariable("id") Integer id);
+    List<NoteBean> getNotesByPatientId(@PathVariable("id") Integer id);
 
     /**
      * POST /notes : Create New Note
@@ -49,5 +49,11 @@ public interface MicroserviceNotesProxy {
      * Delete information for an existing note.
      */
     @DeleteMapping("/notes/{id}")
-    public void deleteNote(@PathVariable("id") String id);
+    void deleteNote(@PathVariable("id") String id);
+
+    /**
+     * DELETE /notes/patients/{id} : Delete notes for patient id
+     */
+    @DeleteMapping("/notes/patients/{id}")
+    void deleteNotesByPatientId(@PathVariable("id") Integer id);
 }

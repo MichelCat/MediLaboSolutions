@@ -19,7 +19,6 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * DiabeteRiskBusiness is the diabetes risk processing service
@@ -43,14 +42,13 @@ public class DiabetesRiskBusiness {
      *
      * @param id Patient ID founded
      * @return Diabetes risk founded
+     * @throws DiabetesRiskNotFoundException Exception
      */
     public DiabetesRisk diabetesRiskAssessmentByPatientId(Integer id) {
-//        Optional<PatientBean> optPatient = microservicePatientsProxy.getPatient(id);
-//        if(!optPatient.isPresent()) {
-//            throw new DiabetesRiskNotFoundException("This patient does not exist");
-//        }
-//        PatientBean patient = optPatient.get();
         PatientBean patient = microservicePatientsProxy.getPatient(id);
+        if (patient == null) {
+            throw new DiabetesRiskNotFoundException("This patient does not exist");
+        }
 
         List<NoteBean> notes = microserviceNotesProxy.getNotesByPatientId(id);
         DiabetesRiskLevel diabetesRiskLevel = diabetesRiskAssessment(patient, notes);
@@ -65,7 +63,7 @@ public class DiabetesRiskBusiness {
      * Diabetes risk assessment
      *
      * @param patient Patient
-     * @param notes List of notes
+     * @param notes List of observations notes
      * @return Diabetes risk level of patient
      */
     public DiabetesRiskLevel diabetesRiskAssessment(PatientBean patient,  List<NoteBean> notes) {
@@ -112,9 +110,9 @@ public class DiabetesRiskBusiness {
     }
 
     /**
-     * Number of trigger terms in the notes list
+     * Number of trigger terms in the observations notes list
      *
-     * @param notes List of notes
+     * @param notes List of observations notes
      * @return Number of trigger terms
      */
     public int numberOfTriggerTerms(List<NoteBean> notes) {
@@ -126,7 +124,7 @@ public class DiabetesRiskBusiness {
                 .toList();
 
         List<String> uppercaseNotes = notes.stream()
-                .map(note -> StringUtils.stripAccents(note.getNote()).toUpperCase())
+                .map(note -> StringUtils.stripAccents(note.getObservationNote()).toUpperCase())
                 .toList();
 
         int numberOfTerms = 0;

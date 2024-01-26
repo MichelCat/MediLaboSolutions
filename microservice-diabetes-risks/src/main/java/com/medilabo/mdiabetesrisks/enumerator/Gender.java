@@ -14,8 +14,4 @@ public enum Gender {
     private Gender(String description){
         this.description = description;
     }
-
-//    public String getDescription() {
-//        return description;
-//    }
 }

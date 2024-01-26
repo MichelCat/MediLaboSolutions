@@ -15,4 +15,6 @@ import java.util.List;
 @Repository
 public interface NoteDao extends MongoRepository<Note, String> {
     public List<Note> findAllByPatientId (int patientId);
+
+    void deleteByPatientId (int patientId);
 }

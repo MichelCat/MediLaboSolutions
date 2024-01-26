@@ -40,7 +40,7 @@ public class Note {
     /**
      * Observation note
      */
-    String note;
+    String observationNote;
 
     /**
      * Create date

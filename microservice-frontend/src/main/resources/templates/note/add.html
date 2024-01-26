@@ -36,7 +36,7 @@
         <form th:action="@{/note/validate}" th:object="${note}" th:method="POST" class="form-horizontal" style="width: 100%">
 
             <!-- Observation note -->
-            <div th:replace="fragments/input-type :: inputTextarea('note', 'label.note.attribute.note')"></div>
+            <div th:replace="fragments/input-type :: inputTextarea('observationNote', 'label.note.attribute.observationNote')"></div>
 
             <!-- Patient ID -->
             <input type="hidden" th:field="*{patientId}">

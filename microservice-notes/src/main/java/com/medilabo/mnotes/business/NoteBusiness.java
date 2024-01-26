@@ -30,18 +30,13 @@ public class NoteBusiness {
     /**
      * Get Notes for patient id
      *
+     * @param id Patient ID founded
      * @return List of note for patient id
      * @throws NoteNoContentException Exception
      */
-    public List<Note> getNotesByPatientId(int id)
+    public List<Note> getNotesByPatientId(final int id)
             throws NoteNoContentException {
-        List<Note> notes = noteDao.findAllByPatientId(id);
-//        // Empty list
-//        if(notes.isEmpty()) {
-//            throw new NoteNoContentException("No notes found");
-//        }
-        // Notes found
-        return notes;
+        return noteDao.findAllByPatientId(id);
     }
 
     /**
@@ -106,8 +101,8 @@ public class NoteBusiness {
 
         // Note updated
         Note newNote = oldNote.get();
-        if(note.getNote() != null) {
-            newNote.setNote(note.getNote());
+        if(note.getObservationNote() != null) {
+            newNote.setObservationNote(note.getObservationNote());
         }
         newNote.setUpdateDate(new Date());
         return noteDao.save(newNote);
@@ -129,5 +124,15 @@ public class NoteBusiness {
         }
         // Note deleted
         noteDao.deleteById(id);
+    }
+
+    /**
+     * Delete Notes for patient id
+     *
+     * @param id Patient ID founded
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteNotesByPatientId(final int id) {
+        noteDao.deleteByPatientId(id);
     }
 }

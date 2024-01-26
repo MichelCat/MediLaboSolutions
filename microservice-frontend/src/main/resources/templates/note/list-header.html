@@ -28,9 +28,11 @@
     <div>
         <label>Gender :</label>
         <label class="radio-inline"><input type="radio" th:field="*{patient.gender}"
-                                           th:value="M" th:text="#{label.enum.gender.male}"></label>
+                                           th:value="M" th:text="#{label.enum.gender.male}"
+                                           disabled></label>
         <label class="radio-inline"><input type="radio" th:field="*{patient.gender}"
-                                           th:value="F" th:text="#{label.enum.gender.female}"></label>
+                                           th:value="F" th:text="#{label.enum.gender.female}"
+                                           disabled></label>
     </div>
 
     <!-- address -->

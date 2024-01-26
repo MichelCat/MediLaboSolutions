@@ -94,7 +94,6 @@ public class NoteController {
      * @param result Result of a validation
      * @param model Model object
      * @param redirectAttributes RedirectAttributes object
-     *
      * @return View
      */
     @PostMapping("/validate")
@@ -160,7 +159,6 @@ public class NoteController {
      * @param result Result of a validation
      * @param model Model object
      * @param redirectAttributes RedirectAttributes object
-     *
      * @return View
      */
     @PostMapping("/update/{id}")
@@ -197,7 +195,6 @@ public class NoteController {
      * @param id Note ID deleted
      * @param model Model object
      * @param redirectAttributes RedirectAttributes object
-     *
      * @return View
      */
     @RequestMapping("/delete/{id}")

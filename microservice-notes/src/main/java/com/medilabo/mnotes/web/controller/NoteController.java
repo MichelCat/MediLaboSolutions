@@ -26,9 +26,10 @@ public class NoteController {
     private NoteBusiness noteBusiness;
 
     /**
-     * GET /notes/patients : Get notes for patient id
+     * GET /notes/patients/{id} : Get notes for patient id
      * Retrieve notes
      *
+     * @param id Patient ID founded (required)
      * @return OK (status code 200)
      *         or No Content (status code 204)
      *         or Bad Request (status code 400)
@@ -89,7 +90,7 @@ public class NoteController {
 
     /**
      * DELETE /notes/{id} : Delete note
-     * Delete information for an existing note.
+     * Delete note for an existing note.
      *
      * @param id Note ID deleted (required)
      * @return OK (status code 200)
@@ -100,5 +101,19 @@ public class NoteController {
     public void deleteNote(@PathVariable("id") String id) {
         log.debug("HTTP PATCH, Delete Note " + id);
         noteBusiness.deleteNote(id);
+    }
+
+    /**
+     * DELETE /notes/patients/{id} : Delete notes for patient id
+     *
+     * @param id Patient ID deleted (required)
+     * @return OK (status code 200)
+     *         or Bad Request (status code 400)
+     *         or Not Found (status code 404)
+     */
+    @DeleteMapping("patients/{id}")
+    public void deleteNotesByPatientId(@PathVariable("id") Integer id) {
+        log.debug("HTTP PATCH, Delete Notes for patient " + id);
+        noteBusiness.deleteNotesByPatientId(id);
     }
 }

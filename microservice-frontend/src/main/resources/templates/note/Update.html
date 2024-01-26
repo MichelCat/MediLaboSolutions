@@ -36,7 +36,7 @@
         <form th:action="@{/note/update/{id}(id=${note.id})}" th:object="${note}" th:method="POST" class="form-horizontal" style="width: 100%">
 
             <!-- Observation note -->
-            <div th:replace="fragments/input-type :: inputTextarea('note', 'label.note.attribute.note')"></div>
+            <div th:replace="fragments/input-type :: inputTextarea('observationNote', 'label.note.attribute.observationNote')"></div>
 
             <!-- Note ID -->
             <input type="hidden" th:field="*{id}">

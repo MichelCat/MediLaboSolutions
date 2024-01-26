@@ -11,7 +11,7 @@ public class FeignConfig {
      * All the requests will contain the basic authentication header.
      */
     @Bean
-    public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
+    public BasicAuthRequestInterceptor mBasicAuthRequestInterceptor(){
         return new BasicAuthRequestInterceptor("user", "user");
     }
 }

@@ -22,7 +22,7 @@ public interface MicroservicePatientsProxy {
      */
     @GetMapping(value = "/patients")
 //    @GetMapping(value = "/microservice-patients/patients")
-    public List<PatientBean> getPatients();
+    List<PatientBean> getPatients();
 
     /**
      * POST /patients : Create New Patient
