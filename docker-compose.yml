@@ -1,0 +1,113 @@
+version: '3.9'
+services:
+
+  medilabo-patients:
+    build: ./microservice-patients
+    image: michelcat/medilabo-patients
+    container_name: medilabo-patients
+    depends_on:
+      - mysqldb
+      - medilabo-eureka-server
+    ports:
+      - "9001:9001"
+    networks:
+      - medilabo_networks
+    restart: on-failure
+
+  medilabo-notes:
+    build: ./microservice-notes
+    image: michelcat/medilabo-notes
+    container_name: medilabo-notes
+    depends_on:
+      - mongodb
+      - medilabo-eureka-server
+    ports:
+      - "9005:9005"
+    networks:
+      - medilabo_networks
+    restart: on-failure
+
+  medilabo-frontend:
+    build: ./microservice-frontend
+    image: michelcat/medilabo-frontend
+    container_name: medilabo-frontend
+    depends_on:
+      - medilabo-eureka-server
+      - medilabo-notes
+      - medilabo-patients
+      - medilabo-diabetes-risks
+      - medilabo-gateway-server
+    ports:
+      - "8080:8080"
+    networks:
+      - medilabo_networks
+    restart: on-failure
+
+  medilabo-diabetes-risks:
+    build: ./microservice-diabetes-risks
+    image: michelcat/medilabo-diabetes-risks
+    container_name: medilabo-diabetes-risks
+    depends_on:
+      - medilabo-eureka-server
+      - medilabo-notes
+      - medilabo-patients
+    ports:
+      - "9006:9006"
+    networks:
+      - medilabo_networks
+    restart: on-failure
+
+  medilabo-gateway-server:
+    build: ./gateway-server
+    image: michelcat/medilabo-gateway-server
+    container_name: medilabo-gateway-server
+    depends_on:
+      - medilabo-eureka-server
+    ports:
+      - "9004:9004"
+    networks:
+      - medilabo_networks
+    restart: on-failure
+
+  medilabo-eureka-server:
+    build: ./eureka-server
+    image: michelcat/medilabo-eureka-server
+    container_name: medilabo-eureka-server
+    ports:
+      - "9102:9102"
+    networks:
+      - medilabo_networks
+    restart: on-failure
+
+  mysqldb:
+    image: mysql:8.3.0
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: medilabo_patient
+      MYSQL_USER:
+      MYSQL_PASSWORD:
+    networks:
+      - medilabo_networks
+
+  mongodb:
+    image: mongo:7.0.5
+    ports:
+      - "27018:27017"
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: medilabo_note
+      MONGO_INITDB_ROOT_USERNAME:
+      MONGO_INITDB_ROOT_PASSWORD:
+    networks:
+      - medilabo_networks
+
+volumes:
+  db_data: {}
+
+networks:
+  medilabo_networks:
+    driver: bridge

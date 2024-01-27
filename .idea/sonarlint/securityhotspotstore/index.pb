@@ -251,3 +251,29 @@ S
 #microservice-diabetes-risks/HELP.md,5\5\55821e87ccd120817eb241370d2eb34a249d6490
 q
 Amicroservice-diabetes-risks/.mvn/wrapper/maven-wrapper.properties,5\b\5bc6f1b76d7c64629a4c5bea86b9b8e150d4e329
+K
+eureka-server/.dockerignore,5\4\54cd9193aa9c29d5d8a7dd5ed020d100f9350cc4
+H
+eureka-server/Dockerfile,c\2\c23e45bb07363b2bfed88dc0975147c2a8cedd09
+B
+docker-compose.yml,3\5\35b8c13cf2eb2a194eada000eb310d65aed53b2a
+P
+ microservice-patients/Dockerfile,f\c\fc0d31bf3100cb32633d68bf610cdb8365b06c7a
+M
+microservice-notes/Dockerfile,f\3\f3fa532fedfcf2b7661121c3d22e303518756e54
+P
+ microservice-frontend/Dockerfile,9\d\9d6b49fea7fad0c7b0f84c481de5c8701b2f792a
+V
+&microservice-diabetes-risks/Dockerfile,1\4\142cc9ed3f47f0d918be4399ff817fd76e685e60
+I
+gateway-server/Dockerfile,1\b\1bb27259f84c99b5b03a099eca644ebe83588d00
+Y
+)microservice-diabetes-risks/.dockerignore,3\a\3a68fb7e21fcaa220e0b31cf08bac2eb01153088
+S
+#microservice-patients/.dockerignore,9\3\9367b1b4ad1f32487ba1a55757b4e04932cef8c9
+P
+ microservice-notes/.dockerignore,5\4\54349e1461ded8ada9978871f897d2eaa01c58fb
+S
+#microservice-frontend/.dockerignore,0\1\01bccbee6e7224e6d26e40dd0b1fa250c07dad02
+L
+gateway-server/.dockerignore,f\4\f4d082c01594b58b4dcf06c53b9aa07a56598e63
