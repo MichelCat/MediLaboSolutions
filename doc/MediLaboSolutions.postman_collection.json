@@ -1,0 +1,373 @@
+{
+	"info": {
+		"_postman_id": "c4933a47-85aa-4c47-8ccb-2a65cf045fa2",
+		"name": "MediLaboSolutions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22533375"
+	},
+	"item": [
+		{
+			"name": "9001-Get Patients Information",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "9001-Get Patients Information",
+					"host": [
+						"9001-Get Patients Information"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9001-Create New Patient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"firstName\": \"Mic\",\r\n  \"lastName\": \"Catalan\",\r\n  \"birthOfDate\": \"2000-12-31\",\r\n  \"gender\": \"F\",\r\n  \"address\": \"1 address\",\r\n  \"phoneNumber\": \"111-222-3333\",\r\n  \"createName\": \"admin\",\r\n  \"createDate\": \"2020-08-24T14:15:22Z\",\r\n  \"updateName\": \"admin\",\r\n  \"updateDate\": \"2020-08-25T14:15:22Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9001/patients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9001-Delete Patient by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9001/patients/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"patients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9001-Update Patient by ID",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"firstName\": \"Prenom1\",\r\n    \"lastName\": \"Nom1\",\r\n    \"birthOfDate\": \"2000-09-12\",\r\n    \"gender\": \"M\",\r\n    \"address\": \"1 Adresse\",\r\n    \"phoneNumber\": \"123-456-7890\",\r\n    \"createName\": null,\r\n    \"createDate\": null,\r\n    \"updateName\": null,\r\n    \"updateDate\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9001/patients/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"patients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9001-Get Patient by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9001/patients/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"patients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8080-Liste patients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patient/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patient",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9102-Page info serveur Eureka",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "9102-Page info serveur Eureka",
+					"host": [
+						"9102-Page info serveur Eureka"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9004-Get Patients Information",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9004/patients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9004",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9004-Liste patients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9004/patient/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9004",
+					"path": [
+						"patient",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9004-Get Patient by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9004/patients/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9004",
+					"path": [
+						"patients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9005-Get notes for patient id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9005/notes/patients/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9005",
+					"path": [
+						"notes",
+						"patients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9005-Create New Note",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"patientId\": 1,\r\n\"note\": \"Test note 1\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:60005/notes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "60005",
+					"path": [
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9005-Delete note",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9005/notes/65adb9719d3c7015f4812061",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9005",
+					"path": [
+						"notes",
+						"65adb9719d3c7015f4812061"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9005-Update note",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"patientId\": 1,\r\n\"note\": \"Test note 2\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9005/notes/65adb9719d3c7015f4812061",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9005",
+					"path": [
+						"notes",
+						"65adb9719d3c7015f4812061"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9005-Get Note by Note ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9005/notes/65adb9719d3c7015f4812061",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9005",
+					"path": [
+						"notes",
+						"65adb9719d3c7015f4812061"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9005-Delete notes for patient id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9005/notes/patients/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9005",
+					"path": [
+						"notes",
+						"patients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9006-Get diabetes risk by Patient ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9006/diabetes-risk/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9006",
+					"path": [
+						"diabetes-risk",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -12,16 +12,13 @@ import java.util.List;
  * @author MC
  * @version 1.0
  */
-//@FeignClient(name = "microservice-patients", url = "localhost:9001")
-@FeignClient(name = "gateway-server", url = "localhost:9004", contextId = "microservice-patients")
-//@FeignClient(name = "gateway-server")
+@FeignClient(name = "gateway-server", url = "medilabo-gateway-server:9004", contextId = "microservice-patients")
 public interface MicroservicePatientsProxy {
     /**
      * GET /patients : Get Patients Information
      * Retrieve patients information.
      */
     @GetMapping(value = "/patients")
-//    @GetMapping(value = "/microservice-patients/patients")
     List<PatientBean> getPatients();
 
     /**
@@ -29,7 +26,6 @@ public interface MicroservicePatientsProxy {
      * Create a new patient.
      */
     @PostMapping(value = "/patients")
-//    @PostMapping(value = "/microservice-patients/patients")
     PatientBean addPatient(@RequestBody PatientBean patient);
 
     /**
@@ -37,7 +33,6 @@ public interface MicroservicePatientsProxy {
      * Retrieve patient information with corresponding patient ID.
      */
     @GetMapping(value = "/patients/{id}")
-//    @GetMapping(value = "/microservice-patients/patients/{id}")
     PatientBean getPatient(@PathVariable("id") Integer id);
 
     /**
@@ -45,7 +40,6 @@ public interface MicroservicePatientsProxy {
      * Update information for an existing patient.
      */
     @PostMapping(value = "/patients/{id}")
-//    @PostMapping(value = "/microservice-patients/patients/{id}")
     PatientBean updatePatient(@PathVariable("id") Integer id
             , @RequestBody PatientBean patient);
 
@@ -54,6 +48,5 @@ public interface MicroservicePatientsProxy {
      * Delete information for an existing patient.
      */
     @DeleteMapping("/patients/{id}")
-//    @DeleteMapping("/microservice-patients/patients/{id}")
     void deletePatient(@PathVariable("id") Integer id);
 }

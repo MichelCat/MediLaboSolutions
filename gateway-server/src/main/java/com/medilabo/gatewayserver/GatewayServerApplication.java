@@ -5,9 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@EnableFeignClients
 @EnableDiscoveryClient
 public class GatewayServerApplication {
 
@@ -26,16 +28,18 @@ public class GatewayServerApplication {
 	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
 		return builder.routes()
 				.route("microservice-frontend", r -> r.path("/patient/**")
-						.uri("lb://microservice-frontend"))
+						.uri("lb://medilabo-frontend"))
 				.route("microservice-frontend", r -> r.path("/note/**")
-						.uri("lb://microservice-frontend"))
+						.uri("lb://medilabo-frontend"))
 
 				.route("microservice-patients", r -> r.path("/patients/**")
-						.uri("lb://microservice-patients"))
+						.uri("lb://medilabo-patients"))
+
 				.route("microservice-notes", r -> r.path("/notes/**")
-						.uri("lb://microservice-notes"))
+						.uri("lb://medilabo-notes"))
+
 				.route("microservice-diabetes-risks", r -> r.path("/diabetes-risk/**")
-						.uri("lb://microservice-diabetes-risks"))
+						.uri("lb://medilabo-diabetes-risks"))
 				.build();
 	}
 }

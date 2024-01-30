@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author MC
  * @version 1.0
  */
-@FeignClient(name = "gateway-server", url = "localhost:9004", contextId = "microservice-diabetes-risks")
+@FeignClient(name = "gateway-server", url = "medilabo-gateway-server:9004", contextId = "microservice-diabetes-risks")
 public interface MicroserviceDiabetesRisksProxy {
 
     /**

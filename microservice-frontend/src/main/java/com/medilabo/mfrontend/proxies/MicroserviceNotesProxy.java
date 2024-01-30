@@ -12,7 +12,7 @@ import java.util.List;
  * @author MC
  * @version 1.0
  */
-@FeignClient(name = "gateway-server", url = "localhost:9004", contextId = "microservice-notes")
+@FeignClient(name = "gateway-server", url = "medilabo-gateway-server:9004", contextId = "microservice-notes")
 public interface MicroserviceNotesProxy {
 
     /**

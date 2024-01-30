@@ -1,30 +1,112 @@
 version: '3.9'
 services:
 
-  medilabo-patients:
-    build: ./microservice-patients
-    image: michelcat/medilabo-patients
-    container_name: medilabo-patients
+  # -----------------------------------------------------------------------------------------------
+  medilabo-eureka-server:
+    build: ./eureka-server
+    image: michelcat/medilabo-eureka-server
+    container_name: medilabo-eureka-server
+    ports:
+      - "9102:9102"
+#    networks:
+#      - medilabo_networks
+    restart: on-failure
+
+  medilabo-gateway-server:
+    build: ./gateway-server
+    image: michelcat/medilabo-gateway-server
+    container_name: medilabo-gateway-server
     depends_on:
-      - mysqldb
       - medilabo-eureka-server
     ports:
-      - "9001:9001"
-    networks:
-      - medilabo_networks
+      - "9004:9004"
+#    networks:
+#      - medilabo_networks
     restart: on-failure
+
+  # -----------------------------------------------------------------------------------------------
+#  mongodb:
+#    image: mongo:latest
+#    ports:
+#      - "27018:27017"
+#    volumes:
+#      - mongodb_data:/data/db
+#      - mongodbconfig:/data/configdb
+#      - ./microservice-notes/src/main/resources/notes.js:/init.json
+#    command: bash -c 'mongod --bind_ip_all & sleep 20 && mongoimport --host localhost --db medilabo_note --collection notes --type json --file /init.json --jsonArray'
+#    restart: always
+#    environment:
+#      MONGO_INITDB_DATABASE: medilabo_note
+#      MONGO_INITDB_ROOT_USERNAME:
+#      MONGO_INITDB_ROOT_PASSWORD:
+##    networks:
+##      - medilabo_networks
 
   medilabo-notes:
     build: ./microservice-notes
     image: michelcat/medilabo-notes
     container_name: medilabo-notes
     depends_on:
-      - mongodb
       - medilabo-eureka-server
+#      - mongodb
     ports:
       - "9005:9005"
-    networks:
-      - medilabo_networks
+    environment:
+      SPRING_DATA_MONGODB_HOST: mongodb
+      SPRING_DATA_MONGODB_DATABASE: medilabo_note
+      SPRING_DATA_MONGODB_PORT: 27017
+#    networks:
+#      - medilabo_networks
+    restart: on-failure
+
+  # -----------------------------------------------------------------------------------------------
+  mysqldb:
+    #    image: mysql:latest
+    image: mysql:8.0.13
+    ports:
+      - 60010:60010
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./microservice-patients/src/main/resources/data.sql:/docker-entrypoint-initdb.d/data.sql
+    restart: always
+    environment:
+      MYSQL_DATABASE: medilabo_patient
+      MYSQL_TCP_PORT: 60010
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+#    networks:
+#      - medilabo_networks
+
+  medilabo-patients:
+    build: ./microservice-patients
+    image: michelcat/medilabo-patients
+    container_name: medilabo-patients
+    depends_on:
+      - mysqldb
+    ports:
+      - "9001:9001"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:60010/medilabo_patient
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: user
+#    networks:
+#      - medilabo_networks
+    restart: on-failure
+
+  # -----------------------------------------------------------------------------------------------
+  medilabo-diabetes-risks:
+    build: ./microservice-diabetes-risks
+    image: michelcat/medilabo-diabetes-risks
+    container_name: medilabo-diabetes-risks
+    depends_on:
+      - medilabo-eureka-server
+      - medilabo-notes
+      - medilabo-patients
+    ports:
+      - "9006:9006"
+#    networks:
+#      - medilabo_networks
     restart: on-failure
 
   medilabo-frontend:
@@ -39,75 +121,16 @@ services:
       - medilabo-gateway-server
     ports:
       - "8080:8080"
-    networks:
-      - medilabo_networks
+#    networks:
+#      - medilabo_networks
     restart: on-failure
 
-  medilabo-diabetes-risks:
-    build: ./microservice-diabetes-risks
-    image: michelcat/medilabo-diabetes-risks
-    container_name: medilabo-diabetes-risks
-    depends_on:
-      - medilabo-eureka-server
-      - medilabo-notes
-      - medilabo-patients
-    ports:
-      - "9006:9006"
-    networks:
-      - medilabo_networks
-    restart: on-failure
-
-  medilabo-gateway-server:
-    build: ./gateway-server
-    image: michelcat/medilabo-gateway-server
-    container_name: medilabo-gateway-server
-    depends_on:
-      - medilabo-eureka-server
-    ports:
-      - "9004:9004"
-    networks:
-      - medilabo_networks
-    restart: on-failure
-
-  medilabo-eureka-server:
-    build: ./eureka-server
-    image: michelcat/medilabo-eureka-server
-    container_name: medilabo-eureka-server
-    ports:
-      - "9102:9102"
-    networks:
-      - medilabo_networks
-    restart: on-failure
-
-  mysqldb:
-    image: mysql:8.3.0
-    ports:
-      - "3307:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-    restart: always
-    environment:
-      MYSQL_DATABASE: medilabo_patient
-      MYSQL_USER:
-      MYSQL_PASSWORD:
-    networks:
-      - medilabo_networks
-
-  mongodb:
-    image: mongo:7.0.5
-    ports:
-      - "27018:27017"
-    restart: always
-    environment:
-      MONGO_INITDB_DATABASE: medilabo_note
-      MONGO_INITDB_ROOT_USERNAME:
-      MONGO_INITDB_ROOT_PASSWORD:
-    networks:
-      - medilabo_networks
-
+  # -----------------------------------------------------------------------------------------------
 volumes:
-  db_data: {}
+#  mongodb_data:
+#  mongodbconfig:
+  mysql_data:
 
-networks:
-  medilabo_networks:
-    driver: bridge
+#networks:
+#  medilabo_networks:
+#    driver: bridge
