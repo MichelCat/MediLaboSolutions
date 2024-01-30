@@ -28,18 +28,18 @@ public class GatewayServerApplication {
 	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
 		return builder.routes()
 				.route("microservice-frontend", r -> r.path("/patient/**")
-						.uri("lb://medilabo-frontend"))
+						.uri("lb://microservice-frontend"))
 				.route("microservice-frontend", r -> r.path("/note/**")
-						.uri("lb://medilabo-frontend"))
+						.uri("lb://microservice-frontend"))
 
 				.route("microservice-patients", r -> r.path("/patients/**")
-						.uri("lb://medilabo-patients"))
+						.uri("lb://microservice-patients"))
 
 				.route("microservice-notes", r -> r.path("/notes/**")
-						.uri("lb://medilabo-notes"))
+						.uri("lb://microservice-notes"))
 
 				.route("microservice-diabetes-risks", r -> r.path("/diabetes-risk/**")
-						.uri("lb://medilabo-diabetes-risks"))
+						.uri("lb://microservice-diabetes-risks"))
 				.build();
 	}
 }
