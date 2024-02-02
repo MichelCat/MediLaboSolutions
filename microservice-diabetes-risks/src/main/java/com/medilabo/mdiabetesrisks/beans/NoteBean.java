@@ -13,7 +13,9 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
+@Builder
 @ToString
 public class NoteBean {
 

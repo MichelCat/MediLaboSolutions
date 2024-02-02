@@ -281,3 +281,7 @@ I
 deployment/init-mysql.sql,4\4\449b0cd90b02560e748dcb850cf67b53ce424ff2
 J
 deployment/init-mongodb.js,7\3\73941620d6bc787555f94ff8ed5936390612b62a
+œ
+lmicroservice-diabetes-risks/src/test/java/com/medilabo/mdiabetesrisks/business/DiabetesRiskBusinessTest.java,2\b\2b75d71d1a451879ee650303fed13afb7136c7a4
+š
+jmicroservice-diabetes-risks/src/test/java/com/medilabo/mdiabetesrisks/business/DiabetesRiskBusinessIT.java,6\c\6ca45442bbd05900c5ff319a16a7755b1baaa5ea

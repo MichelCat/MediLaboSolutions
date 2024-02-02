@@ -12,9 +12,8 @@
         <module name="microservice-frontend" />
         <module name="gateway-server" />
         <module name="eureka-server" />
-        <module name="microservice-diabetes-risks" />
       </profile>
-      <profile name="Annotation profile for microservice-patients" enabled="true">
+      <profile name="Annotation profile for microservice-diabetes-risks" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -24,6 +23,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
         </processorPath>
+        <module name="microservice-diabetes-risks" />
         <module name="microservice-patients" />
       </profile>
     </annotationProcessing>

@@ -18,7 +18,9 @@ import java.time.OffsetDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
+@Builder
 @ToString
 public class PatientBean {
     /**
