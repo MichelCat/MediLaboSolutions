@@ -32,7 +32,7 @@ public class PatientsController {
     private MicroserviceNotesProxy microserviceNotesProxy;
     @Autowired
     private MessageSource messageSource;
-    @Value("${spring.cloud.openfeign.client.config.gateway.url}")
+    @Value("${medilabo.front.redirect.url}")
     private String gatewayUrl;
 
     /**

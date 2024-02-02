@@ -39,7 +39,7 @@ public class NoteController {
     private MicroserviceDiabetesRisksProxy microserviceDiabetesRisksProxy;
     @Autowired
     private MessageSource messageSource;
-    @Value("${spring.cloud.openfeign.client.config.gateway.url}")
+    @Value("${medilabo.front.redirect.url}")
     private String gatewayUrl;
 
     /**
