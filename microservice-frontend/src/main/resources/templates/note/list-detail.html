@@ -1,0 +1,41 @@
+<!--
+/**
+ * list-detail
+ * @description Note List
+ */
+-->
+
+<!-- Note table -->
+
+<!-- Note title -->
+<thead class="bg-success text-white">
+    <tr>
+        <td colspan="3">&nbsp;</td>
+    </tr>
+</thead>
+
+<!-- Note detail -->
+<tbody>
+<tr th:if="${notes.empty}">
+    <td colspan="3">Aucune note</td>
+</tr>
+
+<th:block th:each="note, itemStat : ${notes}">
+    <tr class="text-start">
+        <td th:text="'Create : ' + (${note.createDate} ? ${#dates.format(note.createDate, 'dd/MM/yyyy')} : '')" />
+        <td th:text="'Update : ' + (${note.updateDate} ? ${#dates.format(note.updateDate, 'dd/MM/yyyy')} : '')" />
+        <td style="width: 15%" class="text-center">
+            <!-- Update and Delete button -->
+            <div th:replace="fragments/input-type :: updateDeleteButton(
+                                                        '/note/update/{id}(id=${note.id})'
+                                                        , '/note/delete/{id}(id=${note.id})')"></div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <textarea readonly class="form-control" th:text="${note.observationNote}"></textarea>
+        </td>
+    </tr>
+</th:block>
+
+</tbody>

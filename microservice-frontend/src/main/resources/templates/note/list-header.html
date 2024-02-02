@@ -1,0 +1,55 @@
+<!--
+/**
+ * list-header
+ * @description Header List
+ */
+-->
+
+<th:block class="row">
+    <!-- firstName -->
+    <div>
+        <label>First name :</label>
+        <input type="text" th:field="*{patient.firstName}" readonly />
+    </div>
+
+    <!-- lastName -->
+    <div>
+        <label>Last name :</label>
+        <input type="text" th:field="*{patient.lastName}" readonly />
+    </div>
+
+    <!-- birthOfDate -->
+    <div>
+        <label>Birth of date :</label>
+        <input type="date" th:field="*{patient.birthOfDate}" readonly />
+    </div>
+
+    <!-- gender -->
+    <div>
+        <label>Gender :</label>
+        <label class="radio-inline"><input type="radio" th:field="*{patient.gender}"
+                                           th:value="M" th:text="#{label.enum.gender.male}"
+                                           disabled></label>
+        <label class="radio-inline"><input type="radio" th:field="*{patient.gender}"
+                                           th:value="F" th:text="#{label.enum.gender.female}"
+                                           disabled></label>
+    </div>
+
+    <!-- address -->
+    <div>
+        <label>Address :</label>
+        <input type="text" th:field="*{patient.address}" readonly />
+    </div>
+
+    <!-- phoneNumber -->
+    <div>
+        <label>Phone number :</label>
+        <input type="text" th:field="*{patient.phoneNumber}" readonly />
+    </div>
+
+    <!-- diabetesRiskAssessment -->
+    <div>
+        <label>Diabetes risk assessment :</label>
+        <input type="text" th:field="*{diabetesRisk.diabetesRiskAssessment}" readonly />
+    </div>
+</th:block>

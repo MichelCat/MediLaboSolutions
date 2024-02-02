@@ -1,0 +1,56 @@
+<!--
+/**
+ * update
+ * @description Update patient
+ */
+-->
+
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+	<!-- Update Patient -->
+	<head th:include="fragments/general :: headNormal('label.patient.titleUpdate')">
+	</head>
+
+<body>
+<div class="container">
+
+	<!-- Update Patient -->
+	<header th:insert="fragments/general :: headerNormal('label.patient.titleUpdate')"></header>
+
+	<!-- Global message -->
+	<div th:replace="fragments/global-message"></div>
+
+	<div class="row">
+		<form th:action="@{/patient/update/{id}(id=${patient.id})}" th:object="${patient}" th:method="POST" class="form-horizontal" style="width: 100%">
+
+			<!-- firstName -->
+			<div th:replace="fragments/input-type :: inputText('firstName', 'label.patient.attribute.firstName', 'T')"></div>
+			<!-- lastName -->
+			<div th:replace="fragments/input-type :: inputText('lastName', 'label.patient.attribute.lastName', 'T')"></div>
+			<!-- birthOfDate -->
+			<div th:replace="fragments/input-type :: inputDate('birthOfDate', 'label.patient.attribute.birthOfDate', 'T')"></div>
+			<!-- gender -->
+			<div th:replace="fragments/input-type :: genderRadioButton('gender', 'label.patient.attribute.gender', 'T')"></div>
+			<!-- address -->
+			<div th:replace="fragments/input-type :: inputText('address', 'label.patient.attribute.address', '')"></div>
+			<!-- phoneNumber -->
+			<div th:replace="fragments/input-type :: inputText('phoneNumber', 'label.patient.attribute.phoneNumber', '')"></div>
+
+			<!-- id -->
+			<input type="hidden" th:field="*{id}">
+
+			<!-- Button Cancel and Update -->
+			<div th:replace="fragments/input-type :: cancelSubmitButton('/patient/list', 'label.patient.button.update')"></div>
+
+		</form>
+	</div>
+
+</div>
+
+<footer th:replace="fragments/general :: footer"></footer>
+
+</body>
+</html>

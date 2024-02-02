@@ -1,0 +1,22 @@
+<!--
+/**
+ * menu
+ * @description Menu
+ */
+-->
+
+<div class="row" th:fragment="lineMenu">
+	<!-- Left menu -->
+	<div class="col-6">
+		<img th:src='@{/img/MediLaboSolutions.png}' alt="MediLaboSolutions icon" style="width: 25%">
+	</div>
+
+	<!-- Right menu -->
+	<div class="col-6 d-flex justify-content-end">
+		<div>
+			<form th:action="@{/logout}" method="POST">
+				<input type="submit" value="Logout"/>
+			</form>
+		</div>
+	</div>
+</div>

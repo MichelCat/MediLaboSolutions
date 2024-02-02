@@ -1,0 +1,52 @@
+<!--
+/**
+ * update
+ * @description Update note
+ */
+-->
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!-- Update Note -->
+<head th:include="fragments/general :: headNormal('label.note.titleUpdate')">
+</head>
+
+<body>
+<div class="container">
+
+    <!-- Update Note -->
+    <header th:insert="fragments/general :: headerNormal('label.note.titleUpdate')"></header>
+
+    <!-- Global message -->
+    <div th:replace="fragments/global-message"></div>
+
+    <div class="row">
+        <form th:action="@{/note/update/{id}(id=${note.id})}" th:object="${note}" th:method="POST" class="form-horizontal" style="width: 100%">
+
+            <!-- Observation note -->
+            <div th:replace="fragments/input-type :: inputTextarea('observationNote', 'label.note.attribute.observationNote')"></div>
+
+            <!-- Note ID -->
+            <input type="hidden" th:field="*{id}">
+            <!-- Patient ID -->
+            <input type="hidden" th:field="*{patientId}">
+            <!-- Create date -->
+            <input type="hidden" th:field="*{createDate}">
+            <!-- Update date -->
+            <input type="hidden" th:field="*{updateDate}">
+
+            <!-- Button Cancel and Update -->
+            <div th:replace="fragments/input-type :: cancelSubmitButton('/note/list/{id}(id=${note.patientId})', 'label.note.button.update')"></div>
+
+        </form>
+    </div>
+
+</div>
+
+<footer th:replace="fragments/general :: footer"></footer>
+
+</body>
+</html>

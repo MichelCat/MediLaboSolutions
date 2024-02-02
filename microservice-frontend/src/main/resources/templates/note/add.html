@@ -1,0 +1,46 @@
+<!--
+/**
+ * add
+ * @description Add note
+ */
+-->
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!-- Add New Note -->
+<head th:include="fragments/general :: headNormal('label.note.titleAdd')">
+</head>
+
+<body>
+<div class="container">
+
+    <!-- Add New Note -->
+    <header th:insert="fragments/general :: headerNormal('label.note.titleAdd')"></header>
+
+    <!-- Global message -->
+    <div th:replace="fragments/global-message"></div>
+
+    <div class="row">
+        <form th:action="@{/note/validate}" th:object="${note}" th:method="POST" class="form-horizontal" style="width: 100%">
+
+            <!-- Observation note -->
+            <div th:replace="fragments/input-type :: inputTextarea('observationNote', 'label.note.attribute.observationNote')"></div>
+
+            <!-- Patient ID -->
+            <input type="hidden" th:field="*{patientId}">
+
+            <!-- Button Cancel and Add -->
+            <div th:replace="fragments/input-type :: cancelSubmitButton('/note/list/{id}(id=${note.patientId})', 'label.note.button.add')"></div>
+
+        </form>
+    </div>
+
+</div>
+
+<footer th:replace="fragments/general :: footer"></footer>
+
+</body>
+</html>

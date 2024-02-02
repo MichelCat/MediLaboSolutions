@@ -1,0 +1,51 @@
+<!--
+/**
+ * list
+ * @description Note List management page
+ */
+-->
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="fragments/main-layout">
+
+<head>
+    <!-- Note List -->
+    <title th:text="#{label.note.titleList}" />
+</head>
+
+<body>
+
+<main layout:fragment="content">
+
+    <div class="container">
+        <!-- Navigational hierarchy -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/patient/list}" th:text="#{label.menu.user.home}"></a></li>
+                <li class="breadcrumb-item active" aria-current="page" th:text="#{label.menu.user.note}"></li>
+            </ol>
+        </nav>
+
+        <!-- Note List -->
+        <header th:insert="fragments/general :: headerNormal('label.note.titleList')"></header>
+
+        <!-- Global message -->
+        <div th:replace="fragments/global-message"></div>
+
+        <!-- Add new button -->
+        <div th:replace="fragments/input-type :: addNewButton('/note/add/{id}(id=${patient.id})')"></div>
+
+        <!-- Header List -->
+        <div th:replace="note/list-header"></div>
+
+        <!-- Note List -->
+        <div th:replace="fragments/general :: tableList('note/list-detail')"></div>
+    </div>
+
+</main>
+
+</body>
+</html>
