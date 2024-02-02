@@ -6,6 +6,7 @@ import com.medilabo.mfrontend.proxies.MicroservicePatientsProxy;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,8 @@ public class PatientsController {
     private MicroserviceNotesProxy microserviceNotesProxy;
     @Autowired
     private MessageSource messageSource;
+    @Value("${spring.cloud.openfeign.client.config.gateway.url}")
+    private String gatewayUrl;
 
     /**
      * Read - Get the list of patients.
@@ -96,7 +99,7 @@ public class PatientsController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/patient/list";
+        return "redirect:"+gatewayUrl+"/patient/list";
     }
 
     /**
@@ -120,7 +123,7 @@ public class PatientsController {
             model.addAttribute("patient", patient);
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
-            return "redirect:/patient/list";
+            return "redirect:"+gatewayUrl+"/patient/list";
         }
         return "patient/update";
     }
@@ -160,7 +163,7 @@ public class PatientsController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/patient/list";
+        return "redirect:"+gatewayUrl+"/patient/list";
     }
 
     /**
@@ -188,6 +191,6 @@ public class PatientsController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/patient/list";
+        return "redirect:"+gatewayUrl+"/patient/list";
     }
 }

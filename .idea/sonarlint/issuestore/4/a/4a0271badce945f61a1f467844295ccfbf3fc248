@@ -1,15 +1,17 @@
 
 m
-java:S1192-"KDefine a constant instead of duplicating this literal "HTTP GET, " 3 times.(²µÎİÿÿÿÿÿ8”Ï¢‹Ò1
+java:S11920"KDefine a constant instead of duplicating this literal "HTTP GET, " 3 times.(²µÎİÿÿÿÿÿ8ó²ÕÚÖ1
 j
-java:S1192a"MDefine a constant instead of duplicating this literal "errorMessage" 4 times.(°¦ª•8”Ï¢‹Ò1
+java:S1192d"MDefine a constant instead of duplicating this literal "errorMessage" 4 times.(°¦ª•8ó²ÕÚÖ1
 q
-java:S1192_"ODefine a constant instead of duplicating this literal "successMessage" 3 times.(æÓüÈÿÿÿÿÿ8”Ï¢‹Ò1
-t
-java:S1192c"WDefine a constant instead of duplicating this literal "redirect:/patient/list" 4 times.(öş‹ÿ8”Ï¢‹Ò1
+java:S1192b"ODefine a constant instead of duplicating this literal "successMessage" 3 times.(æÓüÈÿÿÿÿÿ8ó²ÕÚÖ1
+p
+java:S1192f"NDefine a constant instead of duplicating this literal "/patient/list" 4 times.(Ø§š§şÿÿÿÿ8 óäÚÖ1
+l
+java:S1192f"JDefine a constant instead of duplicating this literal "redirect:" 4 times.(Ø§š§şÿÿÿÿ8 óäÚÖ1
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8™Ï¢‹Ò1
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ú²ÕÚÖ1
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8İºÀÚÓ1
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ú²ÕÚÖ1
 _
-java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8‘æÀçÓ1
+java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄŞ8ú²ÕÚÖ1

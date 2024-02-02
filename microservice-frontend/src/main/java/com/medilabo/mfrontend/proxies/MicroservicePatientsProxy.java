@@ -12,7 +12,7 @@ import java.util.List;
  * @author MC
  * @version 1.0
  */
-@FeignClient(name = "gateway-server", url = "medilabo-gateway-server:9004", contextId = "microservice-patients")
+@FeignClient(name = "gateway-server", url = "${spring.cloud.openfeign.client.config.gateway.url}", contextId = "microservice-patients")
 public interface MicroservicePatientsProxy {
     /**
      * GET /patients : Get Patients Information

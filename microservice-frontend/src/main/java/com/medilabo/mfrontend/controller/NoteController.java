@@ -9,6 +9,7 @@ import com.medilabo.mfrontend.proxies.MicroservicePatientsProxy;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
@@ -38,6 +39,8 @@ public class NoteController {
     private MicroserviceDiabetesRisksProxy microserviceDiabetesRisksProxy;
     @Autowired
     private MessageSource messageSource;
+    @Value("${spring.cloud.openfeign.client.config.gateway.url}")
+    private String gatewayUrl;
 
     /**
      * Read - Get notes for patient id
@@ -54,11 +57,11 @@ public class NoteController {
         log.debug("HTTP GET, " + msgSource);
         PatientBean patientBean = microservicePatientsProxy.getPatient(id);
         if (patientBean == null) {
-            return "redirect:/patient/list";
+            return "redirect:"+gatewayUrl+"/patient/list";
         }
         List<NoteBean> notes = microserviceNotesProxy.getNotesByPatientId(id);
         if (notes == null) {
-            return "redirect:/patient/list";
+            return "redirect:"+gatewayUrl+"/patient/list";
         }
         DiabetesRiskBean diabetesRisk = microserviceDiabetesRisksProxy.getDiabetesRiskByPatientId(id);
 
@@ -120,7 +123,7 @@ public class NoteController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/note/list/" + note.getPatientId();
+        return "redirect:"+gatewayUrl+"/note/list/" + note.getPatientId();
     }
 
     /**
@@ -146,7 +149,7 @@ public class NoteController {
             model.addAttribute("note", note);
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
-            return "redirect:/note/list/" + patientId;
+            return "redirect:"+gatewayUrl+"/note/list/" + patientId;
         }
         return "note/update";
     }
@@ -186,7 +189,7 @@ public class NoteController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/note/list/" + note.getPatientId();
+        return "redirect:"+gatewayUrl+"/note/list/" + note.getPatientId();
     }
 
     /**
@@ -216,6 +219,6 @@ public class NoteController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/note/list/" + patientId;
+        return "redirect:"+gatewayUrl+"/note/list/" + patientId;
     }
 }

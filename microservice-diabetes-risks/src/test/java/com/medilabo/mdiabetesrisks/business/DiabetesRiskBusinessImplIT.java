@@ -18,9 +18,15 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * DiabetesRiskBusinessImplIT is a class of integration tests on DiabetesRiskBusiness
+ *
+ * @author MC
+ * @version 1.0
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class DiabetesRiskBusinessIT {
+public class DiabetesRiskBusinessImplIT {
 
     @Autowired
     private DiabetesRiskBusinessImpl diabetesRiskBusiness;
