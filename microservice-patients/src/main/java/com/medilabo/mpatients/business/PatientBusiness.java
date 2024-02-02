@@ -1,38 +1,21 @@
 package com.medilabo.mpatients.business;
 
-import com.medilabo.mpatients.dao.db.PatientDao;
-import com.medilabo.mpatients.dao.db.entities.PatientEntity;
-import com.medilabo.mpatients.mapper.PatientMapper;
 import com.medilabo.mpatients.model.Patient;
 import com.medilabo.mpatients.web.exceptions.PatientBadRequestException;
 import com.medilabo.mpatients.web.exceptions.PatientInternalServerErrorException;
 import com.medilabo.mpatients.web.exceptions.PatientNoContentException;
 import com.medilabo.mpatients.web.exceptions.PatientNotFoundException;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
-import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
 /**
- * PatientBusiness is the patient processing service
+ * PatientBusiness is interface is the patient processing service
  *
  * @author MC
  * @version 1.0
  */
-@Slf4j
-@Service
-public class PatientBusiness {
-
-    @Autowired
-    private PatientDao patientDao;
-    @Autowired
-    private PatientMapper patientMapper;
-
+public interface PatientBusiness {
     /**
      * Get Patients Information
      *
@@ -40,15 +23,7 @@ public class PatientBusiness {
      * @throws PatientNoContentException Exception
      */
     public List<Patient> getPatients()
-            throws PatientNoContentException {
-        List<PatientEntity> patientEntities = patientDao.findAll();
-        // Empty list
-        if(patientEntities.isEmpty()) {
-            throw new PatientNoContentException("No patients found");
-        }
-        // Patients found
-        return patientMapper.entitiesToDao(patientEntities);
-    }
+            throws PatientNoContentException;
 
     /**
      * Create a new patient.
@@ -57,29 +32,8 @@ public class PatientBusiness {
      * @return Patient added
      * @throws PatientInternalServerErrorException,PatientBadRequestException Exception
      */
-    @Transactional(rollbackFor = Exception.class)
     public Patient addPatient(final Patient patient)
-            throws PatientInternalServerErrorException, PatientBadRequestException {
-        // Patient parameter is null
-        if (patient == null) {
-            throw new PatientBadRequestException("Patient is null");
-        }
-
-        // Patient exist
-        if (patientDao.existsByLastNameAndFirstNameAndBirthOfDate(
-                patient.getLastName(), patient.getFirstName(), patient.getBirthOfDate())) {
-            throw new PatientBadRequestException("Patient already exists");
-        }
-
-        // Patient saved
-        PatientEntity patientEntity = patientMapper.daoToEntity(patient);
-        patientEntity.setCreateDate(Timestamp.from(OffsetDateTime.now().toInstant()));
-        PatientEntity newPatientEntity = patientDao.save(patientEntity);
-        if(newPatientEntity == null) {
-            throw new PatientInternalServerErrorException("Unable to add this patient");
-        }
-        return patientMapper.entityToDao(newPatientEntity);
-    }
+            throws PatientInternalServerErrorException, PatientBadRequestException;
 
     /**
      * Get Patient Info by Patient ID
@@ -89,16 +43,7 @@ public class PatientBusiness {
      * @throws PatientNotFoundException Exception
      */
     public Optional<Patient> getPatient(final int id)
-            throws PatientNotFoundException {
-        // Patient does not exist
-        Optional<PatientEntity> patientEntity = patientDao.findById(id);
-        if(!patientEntity.isPresent()) {
-            throw new PatientNotFoundException("This patient does not exist");
-        }
-        // Patient found
-        Patient patient = patientMapper.entityToDao(patientEntity.get());
-        return Optional.ofNullable(patient);
-    }
+            throws PatientNotFoundException;
 
     /**
      * Update Patient Information
@@ -108,40 +53,9 @@ public class PatientBusiness {
      * @return Patient updated
      * @throws PatientNotFoundException Exception
      */
-    @Transactional(rollbackFor = Exception.class)
     public Patient updatePatient(final Integer id
             , final Patient patient)
-            throws PatientNotFoundException {
-        // Patient does not exist
-        Optional<PatientEntity> patientEntity = patientDao.findById(id);
-        if(!patientEntity.isPresent()) {
-            throw new PatientNotFoundException("This patient does not exist");
-        }
-
-        // Patient updated
-        PatientEntity currentPatientEntity = patientEntity.get();
-        if(patient.getFirstName() != null) {
-            currentPatientEntity.setFirstName(patient.getFirstName());
-        }
-        if(patient.getLastName() != null) {
-            currentPatientEntity.setLastName(patient.getLastName());
-        }
-        if(patient.getBirthOfDate() != null) {
-            currentPatientEntity.setBirthOfDate(patient.getBirthOfDate());
-        }
-        if(patient.getGender() != null) {
-            currentPatientEntity.setGender(patient.getGender());
-        }
-        if(patient.getAddress() != null) {
-            currentPatientEntity.setAddress(patient.getAddress());
-        }
-        if(patient.getPhoneNumber() != null) {
-            currentPatientEntity.setPhoneNumber(patient.getPhoneNumber());
-        }
-        currentPatientEntity.setUpdateDate(Timestamp.from(OffsetDateTime.now().toInstant()));
-        PatientEntity newPatientEntity = patientDao.save(currentPatientEntity);
-        return patientMapper.entityToDao(newPatientEntity);
-    }
+            throws PatientNotFoundException;
 
     /**
      * Delete Patient Information
@@ -149,15 +63,6 @@ public class PatientBusiness {
      * @param id Patient ID deleted
      * @throws PatientNotFoundException Exception
      */
-    @Transactional(rollbackFor = Exception.class)
     public void deletePatient(final Integer id)
-            throws PatientNotFoundException {
-        // Patient does not exist
-        Optional<PatientEntity> patientEntity = patientDao.findById(id);
-        if(!patientEntity.isPresent()) {
-            throw new PatientNotFoundException("This patient does not exist");
-        }
-        // Patient deleted
-        patientDao.deleteById(id);
-    }
+            throws PatientNotFoundException;
 }

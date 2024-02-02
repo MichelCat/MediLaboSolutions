@@ -75,8 +75,6 @@ N
 microservice-frontend/mvnw.cmd,f\d\fd531188a111fe532ad1b7f44a6675cc0fb2df47
 J
 microservice-frontend/mvnw,8\f\8f6b52993a5faba557e86209b3de58674d47fe17
-a
-1microservice-patients/src/main/resources/data.sql,0\9\096d5b85adb760f841d36a5870189fcbcb8cd084
 Ÿ
 omicroservice-patients/target/generated-sources/annotations/com/medilabo/mpatients/mapper/PatientMapperImpl.java,f\b\fb391e5b6cc358c10b87b0af8efa647871ae286b
 k
@@ -269,3 +267,17 @@ S
 #microservice-frontend/.dockerignore,0\1\01bccbee6e7224e6d26e40dd0b1fa250c07dad02
 L
 gateway-server/.dockerignore,f\4\f4d082c01594b58b4dcf06c53b9aa07a56598e63
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+]
+-doc/MediLaboSolutions.postman_collection.json,6\2\62f0ff529b23f0baa5c60df9a41e0deb6c434681
+ƒ
+Smicroservice-notes/src/main/java/com/medilabo/mnotes/business/NoteBusinessImpl.java,a\f\afc98abab22a4c054dd2b34b5ac4ee3d1d02ad54
+Œ
+\microservice-patients/src/main/java/com/medilabo/mpatients/business/PatientBusinessImpl.java,8\3\8323533483409f0fccd2083c75bd74942e7619b0
+œ
+lmicroservice-diabetes-risks/src/main/java/com/medilabo/mdiabetesrisks/business/DiabetesRiskBusinessImpl.java,1\a\1a75ebfe3192e619c1c61092b233e81b842f0abe
+I
+deployment/init-mysql.sql,4\4\449b0cd90b02560e748dcb850cf67b53ce424ff2
+J
+deployment/init-mongodb.js,7\3\73941620d6bc787555f94ff8ed5936390612b62a

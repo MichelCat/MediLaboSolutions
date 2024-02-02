@@ -1,32 +1,21 @@
 package com.medilabo.mnotes.business;
 
-import com.medilabo.mnotes.dao.NoteDao;
 import com.medilabo.mnotes.dao.db.Note;
 import com.medilabo.mnotes.web.exceptions.NoteBadRequestException;
 import com.medilabo.mnotes.web.exceptions.NoteInternalServerErrorException;
 import com.medilabo.mnotes.web.exceptions.NoteNoContentException;
 import com.medilabo.mnotes.web.exceptions.NoteNotFoundException;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 /**
- * NoteBusiness is the note processing service
+ * NoteBusiness is interface is the note processing service
  *
  * @author MC
  * @version 1.0
  */
-@Slf4j
-@Service
-public class NoteBusiness {
-    @Autowired
-    private NoteDao noteDao;
-
+public interface NoteBusiness {
     /**
      * Get Notes for patient id
      *
@@ -35,9 +24,7 @@ public class NoteBusiness {
      * @throws NoteNoContentException Exception
      */
     public List<Note> getNotesByPatientId(final int id)
-            throws NoteNoContentException {
-        return noteDao.findAllByPatientId(id);
-    }
+            throws NoteNoContentException;
 
     /**
      * Create a new note.
@@ -46,22 +33,8 @@ public class NoteBusiness {
      * @return Note added
      * @throws NoteInternalServerErrorException, NoteBadRequestException Exception
      */
-    @Transactional(rollbackFor = Exception.class)
     public Note addNote(final Note note)
-            throws NoteInternalServerErrorException, NoteBadRequestException {
-        // Note parameter is null
-        if (note == null) {
-            throw new NoteBadRequestException("Note is null");
-        }
-
-        // Note saved
-        note.setCreateDate(new Date());
-        Note newNote = noteDao.save(note);
-        if(newNote == null) {
-            throw new NoteInternalServerErrorException("Unable to add this note");
-        }
-        return newNote;
-    }
+            throws NoteInternalServerErrorException, NoteBadRequestException;
 
     /**
      * Get Note by Note ID
@@ -71,15 +44,7 @@ public class NoteBusiness {
      * @throws NoteNotFoundException Exception
      */
     public Optional<Note> getNote(final String id)
-            throws NoteNotFoundException {
-        // Note does not exist
-        Optional<Note> note = noteDao.findById(id);
-        if(!note.isPresent()) {
-            throw new NoteNotFoundException("This note does not exist");
-        }
-        // Note found
-        return note;
-    }
+            throws NoteNotFoundException;
 
     /**
      * Update Note
@@ -89,24 +54,9 @@ public class NoteBusiness {
      * @return Note updated
      * @throws NoteNotFoundException Exception
      */
-    @Transactional(rollbackFor = Exception.class)
     public Note updateNote(final String id
             , final Note note)
-            throws NoteNotFoundException {
-        // Note does not exist
-        Optional<Note> oldNote = noteDao.findById(id);
-        if(!oldNote.isPresent()) {
-            throw new NoteNotFoundException("This note does not exist");
-        }
-
-        // Note updated
-        Note newNote = oldNote.get();
-        if(note.getObservationNote() != null) {
-            newNote.setObservationNote(note.getObservationNote());
-        }
-        newNote.setUpdateDate(new Date());
-        return noteDao.save(newNote);
-    }
+            throws NoteNotFoundException;
 
     /**
      * Delete Note
@@ -114,25 +64,13 @@ public class NoteBusiness {
      * @param id Note ID deleted
      * @throws NoteNotFoundException Exception
      */
-    @Transactional(rollbackFor = Exception.class)
     public void deleteNote(final String id)
-            throws NoteNotFoundException {
-        // Note does not exist
-        Optional<Note> note = noteDao.findById(id);
-        if(!note.isPresent()) {
-            throw new NoteNotFoundException("This note does not exist");
-        }
-        // Note deleted
-        noteDao.deleteById(id);
-    }
+            throws NoteNotFoundException;
 
     /**
      * Delete Notes for patient id
      *
      * @param id Patient ID founded
      */
-    @Transactional(rollbackFor = Exception.class)
-    public void deleteNotesByPatientId(final int id) {
-        noteDao.deleteByPatientId(id);
-    }
+    public void deleteNotesByPatientId(final int id);
 }

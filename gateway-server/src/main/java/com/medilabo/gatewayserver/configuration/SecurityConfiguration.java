@@ -43,12 +43,6 @@ public class SecurityConfiguration {
                 .and()
                 .csrf().disable()
                 .httpBasic(withDefaults());
-//        http.csrf(csrfSpec -> csrfSpec.disable())
-//                .authorizeExchange(exchanges -> exchanges
-//                        .anyExchange().authenticated()
-//                )
-//                .httpBasic(withDefaults())
-//                .formLogin(withDefaults());
         return http.build();
     }
 

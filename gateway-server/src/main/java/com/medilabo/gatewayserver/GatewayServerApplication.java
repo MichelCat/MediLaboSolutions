@@ -23,7 +23,6 @@ public class GatewayServerApplication {
 	 * @param builder RouteLocatorBuilder
 	 * @return RouteLocator
 	 */
-	//
 	@Bean
 	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
 		return builder.routes()

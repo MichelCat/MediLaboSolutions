@@ -12,9 +12,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "9001-Get Patients Information",
+					"raw": "http://localhost:9001/patients",
+					"protocol": "http",
 					"host": [
-						"9001-Get Patients Information"
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"patients"
 					]
 				}
 			},
@@ -27,7 +32,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"id\": 0,\r\n  \"firstName\": \"Mic\",\r\n  \"lastName\": \"Catalan\",\r\n  \"birthOfDate\": \"2000-12-31\",\r\n  \"gender\": \"F\",\r\n  \"address\": \"1 address\",\r\n  \"phoneNumber\": \"111-222-3333\",\r\n  \"createName\": \"admin\",\r\n  \"createDate\": \"2020-08-24T14:15:22Z\",\r\n  \"updateName\": \"admin\",\r\n  \"updateDate\": \"2020-08-25T14:15:22Z\"\r\n}",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"firstName\": \"Prénom\",\r\n  \"lastName\": \"Mom\",\r\n  \"birthOfDate\": \"2000-12-31\",\r\n  \"gender\": \"F\",\r\n  \"address\": \"1 address\",\r\n  \"phoneNumber\": \"111-222-3333\",\r\n  \"createName\": \"admin\",\r\n  \"createDate\": \"2020-08-24T14:15:22Z\",\r\n  \"updateName\": \"admin\",\r\n  \"updateDate\": \"2020-08-25T14:15:22Z\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -71,7 +76,7 @@
 		{
 			"name": "9001-Update Patient by ID",
 			"request": {
-				"method": "PATCH",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -143,9 +148,33 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "9102-Page info serveur Eureka",
+					"raw": "http://localhost:9102/",
+					"protocol": "http",
 					"host": [
-						"9102-Page info serveur Eureka"
+						"localhost"
+					],
+					"port": "9102",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9004-Login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9004/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9004",
+					"path": [
+						"login"
 					]
 				}
 			},
@@ -154,6 +183,21 @@
 		{
 			"name": "9004-Get Patients Information",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -173,6 +217,21 @@
 		{
 			"name": "9004-Liste patients",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -193,6 +252,21 @@
 		{
 			"name": "9004-Get Patient by ID",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -246,12 +320,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:60005/notes",
+					"raw": "http://localhost:9005/notes",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "60005",
+					"port": "9005",
 					"path": [
 						"notes"
 					]
@@ -265,7 +339,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9005/notes/65adb9719d3c7015f4812061",
+					"raw": "http://localhost:9005/notes/65bc29f145725e727d667af4",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -273,7 +347,7 @@
 					"port": "9005",
 					"path": [
 						"notes",
-						"65adb9719d3c7015f4812061"
+						"65bc29f145725e727d667af4"
 					]
 				}
 			},
@@ -282,7 +356,7 @@
 		{
 			"name": "9005-Update note",
 			"request": {
-				"method": "PATCH",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -294,7 +368,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9005/notes/65adb9719d3c7015f4812061",
+					"raw": "http://localhost:9005/notes/65bc29f145725e727d667af4",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -302,7 +376,7 @@
 					"port": "9005",
 					"path": [
 						"notes",
-						"65adb9719d3c7015f4812061"
+						"65bc29f145725e727d667af4"
 					]
 				}
 			},
@@ -314,7 +388,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9005/notes/65adb9719d3c7015f4812061",
+					"raw": "http://localhost:9005/notes/65bc29f145725e727d667af4",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -322,7 +396,7 @@
 					"port": "9005",
 					"path": [
 						"notes",
-						"65adb9719d3c7015f4812061"
+						"65bc29f145725e727d667af4"
 					]
 				}
 			},

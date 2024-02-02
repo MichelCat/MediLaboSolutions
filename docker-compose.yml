@@ -32,8 +32,7 @@ services:
     volumes:
       - mongodb_data:/data/db
       - mongodbconfig:/data/configdb
-      - ./microservice-notes/src/main/resources/notes.js:/init.json
-    command: bash -c 'mongod --bind_ip_all & sleep 20 && mongoimport --host localhost --db medilabo_note --collection notes --type json --file /init.json --jsonArray'
+      - ./deployment/init-mongodb.js:/docker-entrypoint-initdb.d/init-mongodb.js:ro
     restart: always
     environment:
       MONGO_INITDB_DATABASE: medilabo_note
@@ -61,13 +60,13 @@ services:
 
   # -----------------------------------------------------------------------------------------------
   mysqldb:
-    #    image: mysql:latest
-    image: mysql:8.0.13
+    image: mysql:latest
+#    image: mysql:8.0.13
     ports:
       - 60010:60010
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./microservice-patients/src/main/resources/data.sql:/docker-entrypoint-initdb.d/data.sql
+      - ./deployment/init-mysql.sql:/docker-entrypoint-initdb.d/init-mysql.sql
     restart: always
     environment:
       MYSQL_DATABASE: medilabo_patient

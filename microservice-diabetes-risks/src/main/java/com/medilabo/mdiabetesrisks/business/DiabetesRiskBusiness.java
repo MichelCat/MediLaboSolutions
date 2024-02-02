@@ -3,40 +3,19 @@ package com.medilabo.mdiabetesrisks.business;
 import com.medilabo.mdiabetesrisks.beans.NoteBean;
 import com.medilabo.mdiabetesrisks.beans.PatientBean;
 import com.medilabo.mdiabetesrisks.enumerator.DiabetesRiskLevel;
-import com.medilabo.mdiabetesrisks.enumerator.Gender;
-import com.medilabo.mdiabetesrisks.enumerator.TriggerTerm;
 import com.medilabo.mdiabetesrisks.model.DiabetesRisk;
-import com.medilabo.mdiabetesrisks.proxies.MicroserviceNotesProxy;
-import com.medilabo.mdiabetesrisks.proxies.MicroservicePatientsProxy;
 import com.medilabo.mdiabetesrisks.web.exceptions.DiabetesRiskNotFoundException;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.Period;
-import java.util.Arrays;
 import java.util.List;
 
 /**
- * DiabeteRiskBusiness is the diabetes risk processing service
+ * DiabeteRiskBusiness is interface is the diabetes risk processing service
  *
  * @author MC
  * @version 1.0
  */
-@Slf4j
-@Service
-public class DiabetesRiskBusiness {
-
-    @Autowired
-    private MicroserviceNotesProxy microserviceNotesProxy;
-    @Autowired
-    private MicroservicePatientsProxy microservicePatientsProxy;
-    @Autowired
-    private MessageSource messageSource;
-
+public interface DiabetesRiskBusiness {
     /**
      * Get diabetes risk by Patient ID
      *
@@ -44,20 +23,7 @@ public class DiabetesRiskBusiness {
      * @return Diabetes risk founded
      * @throws DiabetesRiskNotFoundException Exception
      */
-    public DiabetesRisk diabetesRiskAssessmentByPatientId(Integer id) {
-        PatientBean patient = microservicePatientsProxy.getPatient(id);
-        if (patient == null) {
-            throw new DiabetesRiskNotFoundException("This patient does not exist");
-        }
-
-        List<NoteBean> notes = microserviceNotesProxy.getNotesByPatientId(id);
-        DiabetesRiskLevel diabetesRiskLevel = diabetesRiskAssessment(patient, notes);
-
-        DiabetesRisk diabetesRisk = new  DiabetesRisk();
-        diabetesRisk.setPatientId(patient.getId());
-        diabetesRisk.setDiabetesRiskAssessment(diabetesRiskLevel);
-        return diabetesRisk;
-    }
+    public DiabetesRisk diabetesRiskAssessmentByPatientId(Integer id);
 
     /**
      * Diabetes risk assessment
@@ -66,38 +32,7 @@ public class DiabetesRiskBusiness {
      * @param notes List of observations notes
      * @return Diabetes risk level of patient
      */
-    public DiabetesRiskLevel diabetesRiskAssessment(PatientBean patient,  List<NoteBean> notes) {
-        int patientAge = agePerson(patient.getBirthOfDate());
-        int numberOfTriggerTerms = numberOfTriggerTerms(notes);
-
-        if (patientAge <= 30) {
-            switch (patient.getGender()) {
-                case Gender.M:
-                    if (numberOfTriggerTerms >= 5) {
-                        return DiabetesRiskLevel.EARLYONSET;
-                    } else if (numberOfTriggerTerms >= 3) {
-                        return DiabetesRiskLevel.INDANGER;
-                    }
-                    break;
-                default:
-                    if (numberOfTriggerTerms >= 7) {
-                        return DiabetesRiskLevel.EARLYONSET;
-                    } else if (numberOfTriggerTerms >= 4) {
-                        return DiabetesRiskLevel.INDANGER;
-                    }
-                    break;
-            }
-        } else {
-            if (numberOfTriggerTerms >= 8) {
-                return DiabetesRiskLevel.EARLYONSET;
-            } else if (numberOfTriggerTerms >= 6) {
-                return DiabetesRiskLevel.INDANGER;
-            } else if (numberOfTriggerTerms >= 2) {
-                return DiabetesRiskLevel.BORDERLINE;
-            }
-        }
-        return DiabetesRiskLevel.NONE;
-    }
+    public DiabetesRiskLevel diabetesRiskAssessment(PatientBean patient,  List<NoteBean> notes);
 
     /**
      * Age of a person
@@ -105,9 +40,7 @@ public class DiabetesRiskBusiness {
      * @param birthOfDate Date of birth
      * @return Age of person
      */
-    public int agePerson(LocalDate birthOfDate) {
-        return Period.between(birthOfDate, LocalDate.now()).getYears();
-    }
+    public int agePerson(LocalDate birthOfDate);
 
     /**
      * Number of trigger terms in the observations notes list
@@ -115,24 +48,5 @@ public class DiabetesRiskBusiness {
      * @param notes List of observations notes
      * @return Number of trigger terms
      */
-    public int numberOfTriggerTerms(List<NoteBean> notes) {
-        if (notes.isEmpty()) {
-            return 0;
-        }
-        List<String> triggerTerms = Arrays.stream(TriggerTerm.values())
-                .map(val -> StringUtils.stripAccents(val.getDescription()).toUpperCase())
-                .toList();
-
-        List<String> uppercaseNotes = notes.stream()
-                .map(note -> StringUtils.stripAccents(note.getObservationNote()).toUpperCase())
-                .toList();
-
-        int numberOfTerms = 0;
-        for(String term : triggerTerms) {
-            if (uppercaseNotes.stream().anyMatch(note -> note.contains(term))) {
-                numberOfTerms++;
-            }
-        }
-        return numberOfTerms;
-    }
+    public int numberOfTriggerTerms(List<NoteBean> notes);
 }
